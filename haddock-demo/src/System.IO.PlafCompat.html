@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE CPP #-}</span><span>
+</span><a name="line-2"></a><span class="hs-comment">{- Platform Compatibility Layer
+Copyright (c) 2005-2011 John Goerzen &lt;jgoerzen@complete.org&gt;
+
+All rights reserved.
+
+For license and copyright information, see the file LICENSE
+-}</span><span>
+</span><a name="line-9"></a><span>
+</span><a name="line-10"></a><span class="hs-comment">{- |
+   Module     : System.IO.PlafCompat
+   Copyright  : Copyright (C) 2005-2011 John Goerzen
+   License    : BSD3
+
+   Maintainer : John Goerzen &lt;jgoerzen@complete.org&gt; 
+   Stability  : provisional
+   Portability: portable
+
+On Unix, exports System.Posix.Types and System.Posix.Files.
+
+On Windows, exports System.Posix.Types and &quot;System.IO.WindowsCompat&quot;.
+
+The result should be roughly the same set of defined variables and types.
+
+-}</span><span>
+</span><a name="line-26"></a><span>
+</span><a name="line-27"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">System</span><span class="hs-operator">.</span><span class="hs-identifier">IO</span><span class="hs-operator">.</span><span class="hs-identifier">PlafCompat</span><span>
+</span><a name="line-28"></a><span>    </span><span class="hs-special">(</span><a href="System.IO.PlafCompat.html#nullFileName" xdef=""><span class="hs-identifier hs-var">nullFileName</span></a><span class="hs-special">,</span><span>
+</span><a name="line-29"></a><span class="hs-cpp">#if (defined(mingw32_HOST_OS) || defined(mingw32_TARGET_OS) || defined(__MINGW32__))</span><span>
+</span><a name="line-30"></a><span>     </span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">System</span><span class="hs-operator">.</span><span class="hs-identifier">IO</span><span class="hs-operator">.</span><span class="hs-identifier">WindowsCompat</span><span class="hs-special">,</span><span>
+</span><a name="line-31"></a><span class="hs-cpp">#else</span><span>
+</span><a name="line-32"></a><span>     </span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">System</span><span class="hs-operator">.</span><span class="hs-identifier">Posix</span><span class="hs-operator">.</span><span class="hs-identifier">Files</span><span class="hs-special">,</span><span>
+</span><a name="line-33"></a><span class="hs-cpp">#endif</span><span>
+</span><a name="line-34"></a><span>     </span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">System</span><span class="hs-operator">.</span><span class="hs-identifier">Posix</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span><span class="hs-special">)</span><span>
+</span><a name="line-35"></a><span class="hs-keyword">where</span><span>
+</span><a name="line-36"></a><span>
+</span><a name="line-37"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">System</span><span class="hs-operator">.</span><span class="hs-identifier">Posix</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span><span>
+</span><a name="line-38"></a><span class="hs-cpp">#if (defined(mingw32_HOST_OS) || defined(mingw32_TARGET_OS) || defined(__MINGW32__))</span><span>
+</span><a name="line-39"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">System</span><span class="hs-operator">.</span><span class="hs-identifier">IO</span><span class="hs-operator">.</span><span class="hs-identifier">WindowsCompat</span><span>
+</span><a name="line-40"></a><span class="hs-cpp">#else</span><span>
+</span><a name="line-41"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">System</span><span class="hs-operator">.</span><span class="hs-identifier">Posix</span><span class="hs-operator">.</span><span class="hs-identifier">Files</span><span>
+</span><a name="line-42"></a><span class="hs-cpp">#endif</span><span>
+</span><a name="line-43"></a><span>
+</span><a name="line-44"></a><span class="hs-comment">{- | The name of the null device.  NUL: on Windows, \/dev\/null everywhere else.
+-}</span><span>
+</span><a name="line-46"></a><span>
+</span><a name="line-47"></a><span class="hs-identifier">nullFileName</span><span> </span><span class="hs-glyph">::</span><span> </span><a xdef="imported from Prelude" xref="base:GHC.Base.String"><span class="hs-identifier hs-type">String</span></a><span>
+</span><a name="line-48"></a><span class="hs-cpp">#if (defined(mingw32_HOST_OS) || defined(mingw32_TARGET_OS) || defined(__MINGW32__))</span><span>
+</span><a name="line-49"></a><span class="hs-identifier">nullFileName</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-string">&quot;NUL:&quot;</span><span>
+</span><a name="line-50"></a><span class="hs-cpp">#else</span><span>
+</span><a name="line-51"></a><a name="nullFileName"><a href="System.IO.PlafCompat.html#nullFileName" xdef=""><span class="hs-identifier">nullFileName</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-string">&quot;/dev/null&quot;</span><span>
+</span><a name="line-52"></a><span class="hs-cpp">#endif</span><span>
+</span><a name="line-53"></a></pre></body></html>

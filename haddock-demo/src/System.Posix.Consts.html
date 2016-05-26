@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE CPP #-}</span><span>
+</span><a name="line-2"></a><span class="hs-comment">{- Posix consts not included with Haskell
+Copyright (c) 2005-2011 John Goerzen &lt;jgoerzen@complete.org&gt;
+
+All rights reserved.
+
+For license and copyright information, see the file LICENSE
+-}</span><span>
+</span><a name="line-9"></a><span>
+</span><a name="line-10"></a><span class="hs-comment">{- |
+   Module     : System.Posix.Consts
+   Copyright  : Copyright (C) 2005-2011 John Goerzen
+   License    : BSD3
+
+   Maintainer : John Goerzen &lt;jgoerzen@complete.org&gt; 
+   Stability  : provisional
+   Portability: portable
+
+Exports some POSIX constants and functions that are not exported in fptools
+by default.
+
+-}</span><span>
+</span><a name="line-23"></a><span>
+</span><a name="line-24"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">System</span><span class="hs-operator">.</span><span class="hs-identifier">Posix</span><span class="hs-operator">.</span><span class="hs-identifier">Consts</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-25"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">System</span><span class="hs-operator">.</span><span class="hs-identifier">Posix</span><span class="hs-operator">.</span><span class="hs-identifier">Types</span><span>
+</span><a name="line-26"></a><span>
+</span><a name="line-27"></a><span class="hs-identifier">blockSpecialMode</span><span> </span><span class="hs-glyph">::</span><span> </span><a xdef="imported from System.Posix.Types" xref="base:System.Posix.Types.FileMode"><span class="hs-identifier hs-type">FileMode</span></a><span>
+</span><a name="line-28"></a><a name="blockSpecialMode"><a href="System.Posix.Consts.html#blockSpecialMode" xdef=""><span class="hs-identifier">blockSpecialMode</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-number">0o0060000</span><span>
+</span><a name="line-29"></a><span>
+</span><a name="line-30"></a><span class="hs-identifier">characterSpecialMode</span><span> </span><span class="hs-glyph">::</span><span> </span><a xdef="imported from System.Posix.Types" xref="base:System.Posix.Types.FileMode"><span class="hs-identifier hs-type">FileMode</span></a><span>
+</span><a name="line-31"></a><a name="characterSpecialMode"><a href="System.Posix.Consts.html#characterSpecialMode" xdef=""><span class="hs-identifier">characterSpecialMode</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-number">0o0020000</span><span>
+</span><a name="line-32"></a><span>
+</span><a name="line-33"></a><span class="hs-identifier">namedPipeMode</span><span> </span><span class="hs-glyph">::</span><span> </span><a xdef="imported from System.Posix.Types" xref="base:System.Posix.Types.FileMode"><span class="hs-identifier hs-type">FileMode</span></a><span>
+</span><a name="line-34"></a><a name="namedPipeMode"><a href="System.Posix.Consts.html#namedPipeMode" xdef=""><span class="hs-identifier">namedPipeMode</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-number">0o0010000</span><span>
+</span><a name="line-35"></a><span>
+</span><a name="line-36"></a><span class="hs-identifier">regularFileMode</span><span> </span><span class="hs-glyph">::</span><span> </span><a xdef="imported from System.Posix.Types" xref="base:System.Posix.Types.FileMode"><span class="hs-identifier hs-type">FileMode</span></a><span>
+</span><a name="line-37"></a><a name="regularFileMode"><a href="System.Posix.Consts.html#regularFileMode" xdef=""><span class="hs-identifier">regularFileMode</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-number">0o0100000</span><span>
+</span><a name="line-38"></a><span>
+</span><a name="line-39"></a><span class="hs-identifier">directoryMode</span><span> </span><span class="hs-glyph">::</span><span> </span><a xdef="imported from System.Posix.Types" xref="base:System.Posix.Types.FileMode"><span class="hs-identifier hs-type">FileMode</span></a><span>
+</span><a name="line-40"></a><a name="directoryMode"><a href="System.Posix.Consts.html#directoryMode" xdef=""><span class="hs-identifier">directoryMode</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-number">0o0040000</span><span>
+</span><a name="line-41"></a><span>
+</span><a name="line-42"></a><span class="hs-identifier">fileTypeModes</span><span> </span><span class="hs-glyph">::</span><span> </span><a xdef="imported from System.Posix.Types" xref="base:System.Posix.Types.FileMode"><span class="hs-identifier hs-type">FileMode</span></a><span>
+</span><a name="line-43"></a><a name="fileTypeModes"><a href="System.Posix.Consts.html#fileTypeModes" xdef=""><span class="hs-identifier">fileTypeModes</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-number">0o00170000</span><span>
+</span><a name="line-44"></a><span>
+</span><a name="line-45"></a><span class="hs-identifier">socketMode</span><span> </span><span class="hs-glyph">::</span><span> </span><a xdef="imported from System.Posix.Types" xref="base:System.Posix.Types.FileMode"><span class="hs-identifier hs-type">FileMode</span></a><span>
+</span><a name="line-46"></a><a name="socketMode"><a href="System.Posix.Consts.html#socketMode" xdef=""><span class="hs-identifier">socketMode</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-number">0o0140000</span><span>
+</span><a name="line-47"></a><span>
+</span><a name="line-48"></a><span class="hs-identifier">symbolicLinkMode</span><span> </span><span class="hs-glyph">::</span><span> </span><a xdef="imported from System.Posix.Types" xref="base:System.Posix.Types.FileMode"><span class="hs-identifier hs-type">FileMode</span></a><span>
+</span><a name="line-49"></a><a name="symbolicLinkMode"><a href="System.Posix.Consts.html#symbolicLinkMode" xdef=""><span class="hs-identifier">symbolicLinkMode</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-number">0o0120000</span><span>
+</span><a name="line-50"></a><span>
+</span><a name="line-51"></a><span>
+</span><a name="line-52"></a></pre></body></html>

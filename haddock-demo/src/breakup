@@ -1,0 +1,28 @@
+#!/usr/bin/env python
+
+import re
+import os
+import sys
+
+def breakup(path, dir):
+  out = None
+  with open(path) as f:
+    for t in f.readlines():
+      m = re.match("--\s+([a-z]+)\s*", t)
+      if m:
+        new = m.group(1)
+        if out:
+          out.close()
+        new_path = os.path.join(dir, new)
+        out = open(new_path, 'a')
+        sys.stderr.write("--- " + new + "\n")
+        continue
+      if out:
+        out.write(t)
+
+def main():
+  path = sys.argv[1]
+  breakup(path, 'js')
+
+if __name__ == '__main__':
+  main()

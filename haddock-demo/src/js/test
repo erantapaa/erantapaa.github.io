@@ -1,0 +1,10 @@
+function report_span(e, ln, lpos, rpos) {
+  console.log("at line", ln, "lpos:", lpos, "rpos:", rpos, e)
+}
+
+function highlight_node(e, ln, lpos, rpos) {
+  if (!(e.className && (e.className.indexOf("highlighted") >= 0))) {
+    e.className = e.className + " highlighted"
+  }
+}
+

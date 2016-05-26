@@ -1,0 +1,27 @@
+#!/usr/bin/env python
+
+import re
+import sys
+
+def process_file(seen, path):
+  sys.stderr.write("--- processing file " + path + "\n")
+  if path in seen:
+    return
+  seen.add(path)
+  with open(path) as f:
+    for line in f.readlines():
+      m = re.match('#include\s+(\w[\w.]*)', line)
+      if m:
+          incl = m.group(1)
+          process_file(seen, incl)
+      else:
+        sys.stdout.write(line)
+
+def main():
+  seen = set()
+  for path in sys.argv[1:]:
+    process_file(seen, path)
+
+if __name__ == '__main__':
+  main()
+

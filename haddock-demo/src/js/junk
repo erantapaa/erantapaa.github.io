@@ -1,0 +1,202 @@
+function pushdown_unhighlight(node) {
+  // make all of node's children part of node's parent
+  // then delete node
+  // XXX: not tested yet
+
+  var par = node.parentNode
+  var end = node.nextSibling
+  var e
+  while (e = node.firstChild) {
+    var next = e.nextSibling
+    if (end) {
+      par.insertBefore(e, end)
+    } else {
+      par.addChild(e)
+    }
+    e = next
+  }
+}
+
+function pushdown_highlight(lineno, lpos, rpos) {
+  var nodes = extract_line(lineno, lpos, rpos)
+  var start = nodes[0], end = nodes[1]
+
+  if (!start || !end) {
+    console.log("unable to extract line", lineno, lpos, rpos)
+    return
+  }
+
+  if (!(start.parent === end.parent)) {
+    console.log("start and end do not share the same parent")
+    return
+  }
+
+  // check that end is reachable from start
+  // via .nextSibling
+  var ok = false
+  { var e = start;
+    var count = 100;
+    while (count > 0 && e) {
+      if (e == end) {
+        ok = true
+        break
+      }
+      count = count - 1
+      e = e.nextSibling
+    }
+  }
+
+  if (!ok) {
+    console.log("unable to find end node")
+    return
+  }
+
+  console.log("OK")
+
+  var node = document.createElement('span')
+  node.className = "highlighted"
+  var par = start.parentNode
+
+  if (!par) {
+    console.log("par is undefined")
+    return
+  }
+
+  var before = end.nextSibling
+  var e = start
+  while (e) {
+    var next = e.nextSibling
+    node.appendChild(e)
+    if (e == end) break
+    e = next
+  }
+
+  if (before) {
+    par.insertBefore(node, before)
+  } else {
+    par.addChild(node)
+  }
+
+  return node
+}
+
+function test_click(e) {
+  var x = e.clientX, y = e.clientY, elt = document.elementFromPoint(x,y)
+  var bb = elt.getBoundingClientRect()
+  console.log("x:", x, "y:", y, "bb:", bb)
+}
+
+function dump_line_elts(lineno) {
+  elts = elts_for_line(lineno)
+  for (var i = 0; i < elts.length; i++) {
+    var e = elts[i]
+    var bb = elt_offset(e)
+    console.log(i, "width:", Math.floor(bb.width), "left:", Math.floor(bb.left), "top:", Math.floor(bb.top), e)
+  }
+}
+
+function find_comment_blocks() {
+  var start = first_body_pre().firstChild
+
+  var lineno
+  var cnt = 100000
+  var elt = start
+  var rights = []
+  while (elt && (cnt-- > 0)) {
+    if (lineno = at_line_start_int(elt)) {
+      var p1 = elt.previousSibling
+      if (p1) {
+        var p2 = p1.previousSibling
+        if (p2 && is_comment_span(p2)) {
+          var p3 = p2.previousSibling
+          var block_lineno
+          if (p3 && (block_lineno = at_line_start_int(p3))) {
+            var lines = (elt_text_content(p2) + elt_text_content(p1)).split("\n")
+            for (var i = 0; i < lines.length; i++) {
+              console.log("line:", block_lineno+i, "comment of length", lines[i].length)
+              rights[block_lineno+i] = 0
+            }
+            elt = elt.nextSibling
+            continue
+          } else if (p2 == start) {
+            block_lineno = 1
+            var lines = (elt_text_content(p2) + elt_text_content(p1)).split("\n")
+            for (var i = 0; i < lines.length; i++) {
+              console.log("line:", block_lineno+i, "initial comment of length", lines[i].length)
+              rights[block_lineno+i] = 0
+            }
+            elt = elt.nextSibling
+            continue
+          } 
+        }
+        var bb = elt_offset(p1)
+        console.log("line:", lineno, "right:", Math.floor(bb.left + bb.width))
+        rights[lineno] = bb.left + bb.width
+      }
+    }
+    elt = elt.nextSibling
+  }
+  return rights
+}
+
+function find_comment_blocks0() {
+  var start = first_body_pre().firstChild
+
+  var lineno
+  var cnt = 200
+  var elt = start
+  while (elt && (cnt-- > 0) ) {
+    if (lineno = at_line_start(elt)) {
+      var p1 = elt.previousSibling
+      if (p1) {
+        var p2 = p1.previousSibling
+        if (p2 && is_comment_span(p2)) {
+          var p3 = p2.previousSibling
+          if (p3 && (line = at_line_start(p3))) {
+            var count = count_newlines( p2 ) + count_newlines( p1 )
+            console.log("comment block at line", line, "newlines:", count, p3)
+            elt = elt.nextSibling
+            continue
+          } else if (p2 == start) {
+            var count = count_newlines( p2 )
+            console.log("comment block begins document, newlines:", count)
+            elt = elt.nextSibling
+            continue
+          } 
+        }
+        var bb = elt_offset(p1)
+        var i = parseInt(lineno, 10)-1
+        console.log("line:", i, "right:", Math.floor(bb.left + bb.width), p1)
+      }
+    }
+    elt = elt.nextSibling
+  }
+}
+
+function average_char_width(lineno) {
+  var elts = elts_for_line(lineno)
+  var len = 0
+  for (var i = 0; i < elts.length; i++) {
+    len = len + elt_text_content( elts[i] ).length
+  }
+  var last = elts[ elts.length-1 ]
+  var bb = elt_offset( last )
+  var width = Math.floor(bb.left + bb.width)
+  var avg = width / len
+  var avg_str = Math.floor(avg*10) / 10
+
+  console.log("line", lineno, "chars:", len, "width:", width, "avg:", avg_str, last, bb)
+}
+
+function extract_line(lineno) {
+  var q = "a[name=line-" + lineno + ']'
+  var elt = document.querySelector(q)
+  if (!elt) {
+    console.log("line", lineno, "not found")
+    return
+  }
+  elt = elt.nextSibling
+  var text = []
+  visit_siblings(text, elt)
+  return text.join("")
+}

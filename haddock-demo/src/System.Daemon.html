@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE CPP #-}</span><span>
+</span><a name="line-2"></a><span class="hs-comment">{-
+Copyright (c) 2005-2011 John Goerzen &lt;jgoerzen@complete.org&gt;
+
+All rights reserved.
+
+For license and copyright information, see the file LICENSE
+-}</span><span>
+</span><a name="line-9"></a><span>
+</span><a name="line-10"></a><span class="hs-comment">{- |
+   Module     : System.Daemon
+   Copyright  : Copyright (C) 2005-2011 John Goerzen
+   License    : BSD3
+
+   Maintainer : John Goerzen &lt;jgoerzen@complete.org&gt;
+   Stability  : provisional
+   Portability: portable to platforms with POSIX process\/signal tools
+
+Tools for writing daemons\/server processes
+
+Written by John Goerzen, jgoerzen\@complete.org
+
+Please note: Most of this module is not compatible with Hugs.
+
+Messages from this module are logged under @System.Daemon@.  See
+'System.Log.Logger' for details.
+
+Based on background
+from &lt;http://www.erlenstar.demon.co.uk/unix/faq_2.html#SEC16&gt; and
+&lt;http://www.haskell.org/hawiki/HaskellUnixDaemon&gt;.
+
+This module is not available on Windows.
+-}</span><span>
+</span><a name="line-34"></a><span>
+</span><a name="line-35"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">System</span><span class="hs-operator">.</span><span class="hs-identifier">Daemon</span><span> </span><span class="hs-special">(</span><span>
+</span><a name="line-36"></a><span>
+</span><a name="line-37"></a><span class="hs-cpp">#if !(defined(mingw32_HOST_OS) || defined(mingw32_TARGET_OS) || defined(__MINGW32__))</span><span>
+</span><a name="line-38"></a><span>        </span><a href="System.Daemon.html#detachDaemon" xdef=""><span class="hs-identifier hs-var">detachDaemon</span></a><span>
+</span><a name="line-39"></a><span class="hs-cpp">#endif</span><span>
+</span><a name="line-40"></a><span>                   </span><span class="hs-special">)</span><span>
+</span><a name="line-41"></a><span>                       </span><span class="hs-keyword">where</span><span>
+</span><a name="line-42"></a><span class="hs-cpp">#if !(defined(mingw32_HOST_OS) || defined(mingw32_TARGET_OS) || defined(__MINGW32__))</span><span>
+</span><a name="line-43"></a><span>
+</span><a name="line-44"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">System</span><span class="hs-operator">.</span><span class="hs-identifier">Posix</span><span class="hs-operator">.</span><span class="hs-identifier">Process</span><span>
+</span><a name="line-45"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">System</span><span class="hs-operator">.</span><span class="hs-identifier">Posix</span><span class="hs-operator">.</span><span class="hs-identifier">IO</span><span>
+</span><a name="line-46"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">System</span><span class="hs-operator">.</span><span class="hs-identifier">Directory</span><span>
+</span><a name="line-47"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">System</span><span class="hs-operator">.</span><span class="hs-identifier">Log</span><span class="hs-operator">.</span><span class="hs-identifier">Logger</span><span>
+</span><a name="line-48"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">System</span><span class="hs-operator">.</span><span class="hs-identifier">Exit</span><span>
+</span><a name="line-49"></a><span>
+</span><a name="line-50"></a><span>
+</span><a name="line-51"></a><span class="hs-identifier">trap</span><span> </span><span class="hs-glyph">::</span><span> </span><a xdef="imported from Prelude" xref="ghc-prim:GHC.Types.IO"><span class="hs-identifier hs-type">IO</span></a><span> </span><a href="#local-1627459733"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><a xdef="imported from Prelude" xref="ghc-prim:GHC.Types.IO"><span class="hs-identifier hs-type">IO</span></a><span> </span><a href="#local-1627459733"><span class="hs-identifier hs-type">a</span></a><span>
+</span><a name="line-52"></a><a name="trap"><a href="System.Daemon.html#trap" xdef=""><span class="hs-identifier">trap</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a xdef="imported from System.Log.Logger" xref="hslog_0fQKi4VBOqw57Av2quY42D:System.Log.Logger.traplogging"><span class="hs-identifier hs-var">traplogging</span></a><span> </span><span class="hs-string">&quot;System.Daemon&quot;</span><span> </span><a xdef="imported from System.Log.Logger" xref="hslog_0fQKi4VBOqw57Av2quY42D:System.Log.ERROR"><span class="hs-identifier hs-var">ERROR</span></a><span> </span><span class="hs-string">&quot;detachDaemon&quot;</span><span>
+</span><a name="line-53"></a><span>
+</span><a name="line-54"></a><span class="hs-comment">{- | Detach the process from a controlling terminal and run it in the
+background, handling it with standard Unix deamon semantics.
+
+After running this, please note the following side-effects:
+
+ * The PID of the running process will change
+
+ * stdin, stdout, and stderr will not work (they'll be set to
+   \/dev\/null)
+
+ * CWD will be changed to \/
+
+I /highly/ suggest running this function before starting any threads.
+
+Note that this is not intended for a daemon invoked from inetd(1).
+-}</span><span>
+</span><a name="line-70"></a><span class="hs-identifier">detachDaemon</span><span> </span><span class="hs-glyph">::</span><span> </span><a xdef="imported from Prelude" xref="ghc-prim:GHC.Types.IO"><span class="hs-identifier hs-type">IO</span></a><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><a name="line-71"></a><a name="detachDaemon"><a href="System.Daemon.html#detachDaemon" xdef=""><span class="hs-identifier">detachDaemon</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="System.Daemon.html#trap" xdef=""><span class="hs-identifier hs-var">trap</span></a><span> </span><a xdef="imported from Prelude" xref="base:GHC.Base.$"><span class="hs-operator hs-var">$</span></a><span>
+</span><a name="line-72"></a><span>               </span><span class="hs-keyword">do</span><span> </span><a xdef="imported from System.Posix.Process" xref="unix_A3WgcI5QiHK4PDo4jSYdwQ:System.Posix.Process.Common.forkProcess"><span class="hs-identifier hs-var">forkProcess</span></a><span> </span><a href="System.Daemon.html#child1" xdef=""><span class="hs-identifier hs-var">child1</span></a><span>
+</span><a name="line-73"></a><span>                  </span><a xdef="imported from System.Posix.Process" xref="unix_A3WgcI5QiHK4PDo4jSYdwQ:System.Posix.Process.Common.exitImmediately"><span class="hs-identifier hs-var">exitImmediately</span></a><span> </span><a xdef="imported from System.Exit" xref="base:GHC.IO.Exception.ExitSuccess"><span class="hs-identifier hs-var">ExitSuccess</span></a><span>
+</span><a name="line-74"></a><span>
+</span><a name="line-75"></a><span class="hs-identifier">child1</span><span> </span><span class="hs-glyph">::</span><span> </span><a xdef="imported from Prelude" xref="ghc-prim:GHC.Types.IO"><span class="hs-identifier hs-type">IO</span></a><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><a name="line-76"></a><a name="child1"><a href="System.Daemon.html#child1" xdef=""><span class="hs-identifier">child1</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="System.Daemon.html#trap" xdef=""><span class="hs-identifier hs-var">trap</span></a><span> </span><a xdef="imported from Prelude" xref="base:GHC.Base.$"><span class="hs-operator hs-var">$</span></a><span>
+</span><a name="line-77"></a><span>    </span><span class="hs-keyword">do</span><span> </span><a xdef="imported from System.Posix.Process" xref="unix_A3WgcI5QiHK4PDo4jSYdwQ:System.Posix.Process.Common.createSession"><span class="hs-identifier hs-var">createSession</span></a><span>
+</span><a name="line-78"></a><span>       </span><a xdef="imported from System.Posix.Process" xref="unix_A3WgcI5QiHK4PDo4jSYdwQ:System.Posix.Process.Common.forkProcess"><span class="hs-identifier hs-var">forkProcess</span></a><span> </span><a href="System.Daemon.html#child2" xdef=""><span class="hs-identifier hs-var">child2</span></a><span>
+</span><a name="line-79"></a><span>       </span><a xdef="imported from System.Posix.Process" xref="unix_A3WgcI5QiHK4PDo4jSYdwQ:System.Posix.Process.Common.exitImmediately"><span class="hs-identifier hs-var">exitImmediately</span></a><span> </span><a xdef="imported from System.Exit" xref="base:GHC.IO.Exception.ExitSuccess"><span class="hs-identifier hs-var">ExitSuccess</span></a><span>
+</span><a name="line-80"></a><span>
+</span><a name="line-81"></a><span class="hs-identifier">child2</span><span> </span><span class="hs-glyph">::</span><span> </span><a xdef="imported from Prelude" xref="ghc-prim:GHC.Types.IO"><span class="hs-identifier hs-type">IO</span></a><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><a name="line-82"></a><a name="child2"><a href="System.Daemon.html#child2" xdef=""><span class="hs-identifier">child2</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="System.Daemon.html#trap" xdef=""><span class="hs-identifier hs-var">trap</span></a><span> </span><a xdef="imported from Prelude" xref="base:GHC.Base.$"><span class="hs-operator hs-var">$</span></a><span>
+</span><a name="line-83"></a><span>    </span><span class="hs-keyword">do</span><span> </span><a xdef="imported from System.Directory" xref="direc_KowvXytSqazBcvN7MGpFtg:System.Directory.setCurrentDirectory"><span class="hs-identifier hs-var">setCurrentDirectory</span></a><span> </span><span class="hs-string">&quot;/&quot;</span><span>
+</span><a name="line-84"></a><span>       </span><a xdef="imported from Prelude" xref="base:Data.Foldable.mapM_"><span class="hs-identifier hs-var">mapM_</span></a><span> </span><a xdef="imported from System.Posix.IO" xref="unix_A3WgcI5QiHK4PDo4jSYdwQ:System.Posix.IO.Common.closeFd"><span class="hs-identifier hs-var">closeFd</span></a><span> </span><span class="hs-special">[</span><a xdef="imported from System.Posix.IO" xref="unix_A3WgcI5QiHK4PDo4jSYdwQ:System.Posix.IO.Common.stdInput"><span class="hs-identifier hs-var">stdInput</span></a><span class="hs-special">,</span><span> </span><a xdef="imported from System.Posix.IO" xref="unix_A3WgcI5QiHK4PDo4jSYdwQ:System.Posix.IO.Common.stdOutput"><span class="hs-identifier hs-var">stdOutput</span></a><span class="hs-special">,</span><span> </span><a xdef="imported from System.Posix.IO" xref="unix_A3WgcI5QiHK4PDo4jSYdwQ:System.Posix.IO.Common.stdError"><span class="hs-identifier hs-var">stdError</span></a><span class="hs-special">]</span><span>
+</span><a name="line-85"></a><span>       </span><a name="local-1627459734"><a href="#local-1627459734"><span class="hs-identifier">nullFd</span></a></a><span> </span><span class="hs-glyph">&lt;-</span><span> </span><a xdef="imported from System.Posix.IO" xref="unix_A3WgcI5QiHK4PDo4jSYdwQ:System.Posix.IO.openFd"><span class="hs-identifier hs-var">openFd</span></a><span> </span><span class="hs-string">&quot;/dev/null&quot;</span><span> </span><a xdef="imported from System.Posix.IO" xref="unix_A3WgcI5QiHK4PDo4jSYdwQ:System.Posix.IO.Common.ReadWrite"><span class="hs-identifier hs-var">ReadWrite</span></a><span> </span><a xdef="imported from Prelude" xref="base:GHC.Base.Nothing"><span class="hs-identifier hs-var">Nothing</span></a><span> </span><a xdef="imported from System.Posix.IO" xref="unix_A3WgcI5QiHK4PDo4jSYdwQ:System.Posix.IO.Common.defaultFileFlags"><span class="hs-identifier hs-var">defaultFileFlags</span></a><span>
+</span><a name="line-86"></a><span>       </span><a xdef="imported from Prelude" xref="base:Data.Foldable.mapM_"><span class="hs-identifier hs-var">mapM_</span></a><span> </span><span class="hs-special">(</span><a xdef="imported from System.Posix.IO" xref="unix_A3WgcI5QiHK4PDo4jSYdwQ:System.Posix.IO.Common.dupTo"><span class="hs-identifier hs-var">dupTo</span></a><span> </span><a href="#local-1627459734"><span class="hs-identifier hs-var">nullFd</span></a><span class="hs-special">)</span><span> </span><span class="hs-special">[</span><a xdef="imported from System.Posix.IO" xref="unix_A3WgcI5QiHK4PDo4jSYdwQ:System.Posix.IO.Common.stdInput"><span class="hs-identifier hs-var">stdInput</span></a><span class="hs-special">,</span><span> </span><a xdef="imported from System.Posix.IO" xref="unix_A3WgcI5QiHK4PDo4jSYdwQ:System.Posix.IO.Common.stdOutput"><span class="hs-identifier hs-var">stdOutput</span></a><span class="hs-special">,</span><span> </span><a xdef="imported from System.Posix.IO" xref="unix_A3WgcI5QiHK4PDo4jSYdwQ:System.Posix.IO.Common.stdError"><span class="hs-identifier hs-var">stdError</span></a><span class="hs-special">]</span><span>
+</span><a name="line-87"></a><span>       </span><a xdef="imported from System.Posix.IO" xref="unix_A3WgcI5QiHK4PDo4jSYdwQ:System.Posix.IO.Common.closeFd"><span class="hs-identifier hs-var">closeFd</span></a><span> </span><a href="#local-1627459734"><span class="hs-identifier hs-var">nullFd</span></a><span>
+</span><a name="line-88"></a><span class="hs-cpp">#endif</span><span>
+</span><a name="line-89"></a></pre></body></html>

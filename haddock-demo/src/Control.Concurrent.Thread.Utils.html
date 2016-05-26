@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">{- arch-tag: Thread utilities main file
+Copyright (c) 2004-2011 John Goerzen &lt;jgoerzen@complete.org&gt;
+
+All rights reserved.
+
+For license and copyright information, see the file LICENSE
+-}</span><span>
+</span><a name="line-8"></a><span>
+</span><a name="line-9"></a><span class="hs-comment">{- |
+   Module     : Control.Concurrent.Thread.Utils
+   Copyright  : Copyright (C) 2004-2011 John Goerzen
+   License    : BSD3
+
+   Maintainer : John Goerzen &lt;jgoerzen@complete.org&gt; 
+   Stability  : provisional
+   Portability: portable
+
+This module provides various helpful utilities for dealing with threads.
+
+Written by John Goerzen, jgoerzen\@complete.org
+-}</span><span>
+</span><a name="line-22"></a><span>
+</span><a name="line-23"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Concurrent</span><span class="hs-operator">.</span><span class="hs-identifier">Thread</span><span class="hs-operator">.</span><span class="hs-identifier">Utils</span><span class="hs-special">(</span><span class="hs-comment">-- * I\/O utilities</span><span>
+</span><a name="line-24"></a><span>                        </span><a href="Control.Concurrent.Thread.Utils.html#runInThread" xdef=""><span class="hs-identifier hs-var">runInThread</span></a><span>
+</span><a name="line-25"></a><span>                       </span><span class="hs-special">)</span><span>
+</span><a name="line-26"></a><span class="hs-keyword">where</span><span>
+</span><a name="line-27"></a><span>
+</span><a name="line-28"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Control</span><span class="hs-operator">.</span><span class="hs-identifier">Concurrent</span><span>
+</span><a name="line-29"></a><span>
+</span><a name="line-30"></a><span class="hs-comment">{- | Takes a IO action and a function.  The IO action will be called in a 
+separate thread.  When it is completed, the specified function is called with
+its result.  This is a simple way of doing callbacks. -}</span><span>
+</span><a name="line-33"></a><span>
+</span><a name="line-34"></a><span class="hs-identifier">runInThread</span><span> </span><span class="hs-glyph">::</span><span> </span><a xdef="imported from Prelude" xref="ghc-prim:GHC.Types.IO"><span class="hs-identifier hs-type">IO</span></a><span> </span><a href="#local-1627458929"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">(</span><a href="#local-1627458929"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><a xdef="imported from Prelude" xref="ghc-prim:GHC.Types.IO"><span class="hs-identifier hs-type">IO</span></a><span> </span><a href="#local-1627458930"><span class="hs-identifier hs-type">b</span></a><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><a xdef="imported from Prelude" xref="ghc-prim:GHC.Types.IO"><span class="hs-identifier hs-type">IO</span></a><span> </span><a xdef="imported from Control.Concurrent" xref="base:GHC.Conc.Sync.ThreadId"><span class="hs-identifier hs-type">ThreadId</span></a><span>
+</span><a name="line-35"></a><a name="runInThread"><a href="Control.Concurrent.Thread.Utils.html#runInThread" xdef=""><span class="hs-identifier">runInThread</span></a></a><span> </span><a name="local-1627458931"><a href="#local-1627458931"><span class="hs-identifier">action</span></a></a><span> </span><a name="local-1627458932"><a href="#local-1627458932"><span class="hs-identifier">callback</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a xdef="imported from Control.Concurrent" xref="base:GHC.Conc.Sync.forkIO"><span class="hs-identifier hs-var">forkIO</span></a><span> </span><a xdef="imported from Prelude" xref="base:GHC.Base.$"><span class="hs-operator hs-var">$</span></a><span> </span><a href="#local-1627458931"><span class="hs-identifier hs-var">action</span></a><span> </span><a xdef="imported from Prelude" xref="base:GHC.Base.&gt;&gt;="><span class="hs-operator hs-var">&gt;&gt;=</span></a><span> </span><a href="#local-1627458932"><span class="hs-identifier hs-var">callback</span></a><span> </span><a xdef="imported from Prelude" xref="base:GHC.Base.&gt;&gt;"><span class="hs-operator hs-var">&gt;&gt;</span></a><span> </span><a xdef="imported from Prelude" xref="base:GHC.Base.return"><span class="hs-identifier hs-var">return</span></a><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><a name="line-36"></a></pre></body></html>

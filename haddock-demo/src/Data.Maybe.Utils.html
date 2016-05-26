@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">{- arch-tag: Maybe utilities
+Copyright (c) 2005-2011 John Goerzen &lt;jgoerzen@complete.org&gt;
+
+All rights reserved.
+
+For license and copyright information, see the file LICENSE
+-}</span><span>
+</span><a name="line-8"></a><span>
+</span><a name="line-9"></a><span class="hs-comment">{- |
+   Module     : Data.Maybe.Utils
+   Copyright  : Copyright (C) 2005-2011 John Goerzen
+   License    : BSD3
+
+   Maintainer : John Goerzen &lt;jgoerzen@complete.org&gt; 
+   Stability  : provisional
+   Portability: portable
+
+Utilities for working with the Either data type
+
+-}</span><span>
+</span><a name="line-21"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Maybe</span><span class="hs-operator">.</span><span class="hs-identifier">Utils</span><span>
+</span><a name="line-22"></a><span>    </span><span class="hs-special">(</span><span>
+</span><a name="line-23"></a><span>     </span><a href="Data.Maybe.Utils.html#forceMaybe" xdef=""><span class="hs-identifier hs-var">forceMaybe</span></a><span class="hs-special">,</span><span> </span><a href="Data.Maybe.Utils.html#forceMaybeMsg" xdef=""><span class="hs-identifier hs-var">forceMaybeMsg</span></a><span>
+</span><a name="line-24"></a><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-25"></a><span>
+</span><a name="line-26"></a><span class="hs-comment">{- | Pulls a Just value out of a Maybe value.  If the Maybe value is
+Nothing, raises an exception with error. -}</span><span>
+</span><a name="line-28"></a><span class="hs-identifier">forceMaybe</span><span> </span><span class="hs-glyph">::</span><span> </span><a xdef="imported from Prelude" xref="base:GHC.Base.Maybe"><span class="hs-identifier hs-type">Maybe</span></a><span> </span><a href="#local-1627436157"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><a href="#local-1627436157"><span class="hs-identifier hs-type">a</span></a><span>
+</span><a name="line-29"></a><a name="forceMaybe"><a href="Data.Maybe.Utils.html#forceMaybe" xdef=""><span class="hs-identifier">forceMaybe</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Data.Maybe.Utils.html#forceMaybeMsg" xdef=""><span class="hs-identifier hs-var">forceMaybeMsg</span></a><span> </span><span class="hs-string">&quot;forceMaybe: Got Nothing&quot;</span><span>
+</span><a name="line-30"></a><span>
+</span><a name="line-31"></a><span class="hs-comment">{- | Like 'forceMaybe', but lets you customize the error message raised if
+Nothing is supplied. -}</span><span>
+</span><a name="line-33"></a><span class="hs-identifier">forceMaybeMsg</span><span> </span><span class="hs-glyph">::</span><span> </span><a xdef="imported from Prelude" xref="base:GHC.Base.String"><span class="hs-identifier hs-type">String</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><a xdef="imported from Prelude" xref="base:GHC.Base.Maybe"><span class="hs-identifier hs-type">Maybe</span></a><span> </span><a href="#local-1627436156"><span class="hs-identifier hs-type">a</span></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><a href="#local-1627436156"><span class="hs-identifier hs-type">a</span></a><span>
+</span><a name="line-34"></a><a name="forceMaybeMsg"><a href="Data.Maybe.Utils.html#forceMaybeMsg" xdef=""><span class="hs-identifier">forceMaybeMsg</span></a></a><span> </span><a name="local-1627436158"><a href="#local-1627436158"><span class="hs-identifier">msg</span></a></a><span> </span><a xdef="imported from Prelude" xref="base:GHC.Base.Nothing"><span class="hs-identifier hs-var">Nothing</span></a><span> </span><span class="hs-glyph">=</span><span> </span><a xdef="imported from Prelude" xref="base:GHC.Err.error"><span class="hs-identifier hs-var">error</span></a><span> </span><a href="#local-1627436158"><span class="hs-identifier hs-var">msg</span></a><span>
+</span><a name="line-35"></a><span class="hs-identifier">forceMaybeMsg</span><span> </span><span class="hs-identifier">_</span><span> </span><span class="hs-special">(</span><a xdef="imported from Prelude" xref="base:GHC.Base.Just"><span class="hs-identifier hs-var">Just</span></a><span> </span><a name="local-1627436159"><a href="#local-1627436159"><span class="hs-identifier">x</span></a></a><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><a href="#local-1627436159"><span class="hs-identifier hs-var">x</span></a><span>
+</span><a name="line-36"></a></pre></body></html>
