@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en"><head><title>MonadIO m =&gt; SqlQuery () -&gt; SqlPersistT m () - Hayoo!</title>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<link href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+<link href="hayoo.css" rel="stylesheet">
+<script src="/hayoo.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="search" title="Hayoo! Haskell API Search" href="opensearch.xml" type="application/opensearchdescription+xml" />
+<link rel="icon" href="/favicon.ico">
+<script>var currentQuery = "MonadIO m =&gt; SqlQuery () -&gt; SqlPersistT m ()"</script>
+</head>
+
+<body><div class="container"><hr />
+<form action="." method="get" id="search" role="search"><div class="row"><div class="col-xs-3"><a href="/"><img class="logo" src="/hayoo2.png" alt="Hayoo! logo">
+</a>
+</div>
+<div class="col-xs-7"><input class="form-control" placeholder="Search" name="query" id="hayoo" type="text" autocomplete="off" accesskey="1" value="MonadIO m =&gt; SqlQuery () -&gt; SqlPersistT m ()">
+</div>
+<div class="col-xs-2"><input class="btn btn-primary" id="submit" type="submit" value="Search">
+</div>
+</div>
+</form>
+
+<hr /><div id="results"><div class="panel panel-default"><div class="panel-heading"><a class="result-title" href="http://hackage.haskell.org/package/esqueleto/docs/Database-Esqueleto-Internal-Sql.html#v:delete">delete</a>
+:: MonadIO m =&gt; SqlQuery () -&gt; SqlPersistT m ()
+<div class="pull-right dropdown text-primary" id="fat-menu"><a class="dropdown-toggle" href="#" id="drop3" role="button" data-toggle="dropdown">More<b class="caret"></b>
+<ul class="dropdown-menu" role="menu" aria-labelledby="drop3"><li role="presentation"><a role="menuitem" tabindex="-1" href="/?query=module%3A%28%21Database.Esqueleto.Internal.Sql%29%20type%3A%28%21module%29">Show related module</a>
+</li>
+<li role="presentation"><a role="menuitem" tabindex="-1" href="/?query=name%3A%28%21esqueleto%29%20type%3A%28%21package%29">Show related package</a>
+</li>
+<li class="divider" role="presentation"></li>
+<li role="presentation"><a role="menuitem" tabindex="-1" href="http://hackage.haskell.org/package/esqueleto/docs/src/Database-Esqueleto-Internal-Sql.html#delete">Source</a>
+</li>
+</ul>
+</a>
+</div>
+</div>
+
+<div class="panel-body"><p class="result-subtitle"><a href="http://hackage.haskell.org/package/esqueleto">esqueleto</a>
+-<a href="http://hackage.haskell.org/package/esqueleto/docs/Database-Esqueleto-Internal-Sql.html">Database.Esqueleto.Internal.Sql</a>
+&nbsp;</p>
+<div class="description more">&lt;p&gt;Execute an &lt;code&gt;esqueleto&lt;/code&gt; &lt;code&gt;DELETE&lt;/code&gt; query inside &lt;code&gt;persistent&lt;/code&gt;&#39;s
+ &lt;code&gt;&lt;a href=&quot;/?query=%28%28name%3A%28%21SqlPersistT%29%20package%3A%28%21persistent%29%20module%3A%28%21Database.Persist.Sql%29%29%5E100.0%29%20OR%20%28%28name%3A%28%21SqlPersistT%29%20package%3A%28%21persistent%29%29%5E10.0%29%20OR%20name%3A%28%21SqlPersistT%29&quot;&gt;SqlPersistT&lt;/a&gt;&lt;/code&gt; monad.  Note that currently there are no type
+ checks for statements that should not appear on a &lt;code&gt;DELETE&lt;/code&gt;
+ query.&lt;/p&gt;&lt;p&gt;Example of usage:&lt;/p&gt;&lt;pre&gt;&lt;code&gt;&lt;a href=&quot;/?query=%28%28name%3A%28%21delete%29%20package%3A%28%21esqueleto%29%20module%3A%28%21Database.Esqueleto.Internal.Sql%29%29%5E100.0%29%20OR%20%28%28name%3A%28%21delete%29%20package%3A%28%21esqueleto%29%29%5E10.0%29%20OR%20name%3A%28%21delete%29&quot;&gt;delete&lt;/a&gt;&lt;/code&gt; $
+&lt;code&gt;&lt;a href=&quot;/?query=%28%28name%3A%28%21from%29%20package%3A%28%21esqueleto%29%20module%3A%28%21Database.Esqueleto.Internal.Language%29%29%5E100.0%29%20OR%20%28%28name%3A%28%21from%29%20package%3A%28%21esqueleto%29%29%5E10.0%29%20OR%20name%3A%28%21from%29&quot;&gt;from&lt;/a&gt;&lt;/code&gt; $ \appointment -&gt;
+&lt;code&gt;&lt;a href=&quot;/?query=%28%28name%3A%28%21where_%29%20package%3A%28%21esqueleto%29%20module%3A%28%21Database.Esqueleto.Internal.Language%29%29%5E100.0%29%20OR%20%28%28name%3A%28%21where_%29%20package%3A%28%21esqueleto%29%29%5E10.0%29%20OR%20name%3A%28%21where_%29&quot;&gt;where_&lt;/a&gt;&lt;/code&gt; (appointment &lt;code&gt;&lt;a href=&quot;/?query=%28%28name%3A%28%21%27%5E.%27%29%20package%3A%28%21esqueleto%29%20module%3A%28%21Database.Esqueleto.Internal.Language%29%29%5E100.0%29%20OR%20%28%28name%3A%28%21%27%5E.%27%29%20package%3A%28%21esqueleto%29%29%5E10.0%29%20OR%20name%3A%28%21%27%5E.%27%29&quot;&gt;^.&lt;/a&gt;&lt;/code&gt; AppointmentDate &lt;code&gt;&lt;a href=&quot;/?query=%28%28name%3A%28%21%3C.%29%20package%3A%28%21esqueleto%29%20module%3A%28%21Database.Esqueleto.Internal.Language%29%29%5E100.0%29%20OR%20%28%28name%3A%28%21%3C.%29%20package%3A%28%21esqueleto%29%29%5E10.0%29%20OR%20name%3A%28%21%3C.%29&quot;&gt;&lt;.&lt;/a&gt;&lt;/code&gt; &lt;code&gt;&lt;a href=&quot;/?query=%28%28name%3A%28%21val%29%20package%3A%28%21esqueleto%29%20module%3A%28%21Database.Esqueleto.Internal.Language%29%29%5E100.0%29%20OR%20%28%28name%3A%28%21val%29%20package%3A%28%21esqueleto%29%29%5E10.0%29%20OR%20name%3A%28%21val%29&quot;&gt;val&lt;/a&gt;&lt;/code&gt; now)
+&lt;/pre&gt;&lt;p&gt;Unlike &lt;code&gt;&lt;a href=&quot;/?query=%28%28name%3A%28%21select%29%20package%3A%28%21esqueleto%29%20module%3A%28%21Database.Esqueleto.Internal.Sql%29%29%5E100.0%29%20OR%20%28%28name%3A%28%21select%29%20package%3A%28%21esqueleto%29%29%5E10.0%29%20OR%20name%3A%28%21select%29&quot;&gt;select&lt;/a&gt;&lt;/code&gt;, there is a useful way of using &lt;code&gt;&lt;a href=&quot;/?query=%28%28name%3A%28%21delete%29%20package%3A%28%21esqueleto%29%20module%3A%28%21Database.Esqueleto.Internal.Sql%29%29%5E100.0%29%20OR%20%28%28name%3A%28%21delete%29%20package%3A%28%21esqueleto%29%29%5E10.0%29%20OR%20name%3A%28%21delete%29&quot;&gt;delete&lt;/a&gt;&lt;/code&gt; that
+ will lead to type ambiguities.  If you want to delete all rows
+ (i.e., no &lt;code&gt;&lt;a href=&quot;/?query=%28%28name%3A%28%21where_%29%20package%3A%28%21esqueleto%29%20module%3A%28%21Database.Esqueleto.Internal.Language%29%29%5E100.0%29%20OR%20%28%28name%3A%28%21where_%29%20package%3A%28%21esqueleto%29%29%5E10.0%29%20OR%20name%3A%28%21where_%29&quot;&gt;where_&lt;/a&gt;&lt;/code&gt; clause), you&#39;ll have to use a type signature:&lt;/p&gt;&lt;pre&gt;&lt;code&gt;&lt;a href=&quot;/?query=%28%28name%3A%28%21delete%29%20package%3A%28%21esqueleto%29%20module%3A%28%21Database.Esqueleto.Internal.Sql%29%29%5E100.0%29%20OR%20%28%28name%3A%28%21delete%29%20package%3A%28%21esqueleto%29%29%5E10.0%29%20OR%20name%3A%28%21delete%29&quot;&gt;delete&lt;/a&gt;&lt;/code&gt; $
+&lt;code&gt;&lt;a href=&quot;/?query=%28%28name%3A%28%21from%29%20package%3A%28%21esqueleto%29%20module%3A%28%21Database.Esqueleto.Internal.Language%29%29%5E100.0%29%20OR%20%28%28name%3A%28%21from%29%20package%3A%28%21esqueleto%29%29%5E10.0%29%20OR%20name%3A%28%21from%29&quot;&gt;from&lt;/a&gt;&lt;/code&gt; $ \(appointment :: &lt;code&gt;&lt;a href=&quot;/?query=%28%28name%3A%28%21SqlExpr%29%20package%3A%28%21esqueleto%29%20module%3A%28%21Database.Esqueleto.Internal.Sql%29%29%5E100.0%29%20OR%20%28%28name%3A%28%21SqlExpr%29%20package%3A%28%21esqueleto%29%29%5E10.0%29%20OR%20name%3A%28%21SqlExpr%29&quot;&gt;SqlExpr&lt;/a&gt;&lt;/code&gt; (&lt;code&gt;&lt;a href=&quot;/?query=%28%28name%3A%28%21Entity%29%20package%3A%28%21persistent%29%20module%3A%28%21Database.Persist.Types%29%29%5E100.0%29%20OR%20%28%28name%3A%28%21Entity%29%20package%3A%28%21persistent%29%29%5E10.0%29%20OR%20name%3A%28%21Entity%29&quot;&gt;Entity&lt;/a&gt;&lt;/code&gt; Appointment)) -&gt;
+return ()
+&lt;/pre&gt;</div>
+</div>
+</div>
+<div class="panel panel-default"><div class="panel-heading"><a class="result-title" href="http://hackage.haskell.org/package/esqueleto/docs/Database-Esqueleto.html#v:delete">delete</a>
+:: MonadIO m =&gt; SqlQuery () -&gt; SqlPersistT m ()
+<div class="pull-right dropdown text-primary" id="fat-menu"><a class="dropdown-toggle" href="#" id="drop3" role="button" data-toggle="dropdown">More<b class="caret"></b>
+<ul class="dropdown-menu" role="menu" aria-labelledby="drop3"><li role="presentation"><a role="menuitem" tabindex="-1" href="/?query=module%3A%28%21Database.Esqueleto%29%20type%3A%28%21module%29">Show related module</a>
+</li>
+<li role="presentation"><a role="menuitem" tabindex="-1" href="/?query=name%3A%28%21esqueleto%29%20type%3A%28%21package%29">Show related package</a>
+</li>
+<li class="divider" role="presentation"></li>
+<li role="presentation"><a role="menuitem" tabindex="-1" href="http://hackage.haskell.org/package/esqueleto/docs/src/Database-Esqueleto-Internal-Sql.html#delete">Source</a>
+</li>
+</ul>
+</a>
+</div>
+</div>
+
+<div class="panel-body"><p class="result-subtitle"><a href="http://hackage.haskell.org/package/esqueleto">esqueleto</a>
+-<a href="http://hackage.haskell.org/package/esqueleto/docs/Database-Esqueleto.html">Database.Esqueleto</a>
+&nbsp;</p>
+<div class="description more">&lt;p&gt;Execute an &lt;code&gt;esqueleto&lt;/code&gt; &lt;code&gt;DELETE&lt;/code&gt; query inside &lt;code&gt;persistent&lt;/code&gt;&#39;s
+ &lt;code&gt;&lt;a href=&quot;/?query=%28%28name%3A%28%21SqlPersistT%29%20package%3A%28%21persistent%29%20module%3A%28%21Database.Persist.Sql%29%29%5E100.0%29%20OR%20%28%28name%3A%28%21SqlPersistT%29%20package%3A%28%21persistent%29%29%5E10.0%29%20OR%20name%3A%28%21SqlPersistT%29&quot;&gt;SqlPersistT&lt;/a&gt;&lt;/code&gt; monad.  Note that currently there are no type
+ checks for statements that should not appear on a &lt;code&gt;DELETE&lt;/code&gt;
+ query.&lt;/p&gt;&lt;p&gt;Example of usage:&lt;/p&gt;&lt;pre&gt;&lt;code&gt;&lt;a href=&quot;/?query=%28%28name%3A%28%21delete%29%20package%3A%28%21esqueleto%29%20module%3A%28%21Database.Esqueleto%29%29%5E100.0%29%20OR%20%28%28name%3A%28%21delete%29%20package%3A%28%21esqueleto%29%29%5E10.0%29%20OR%20name%3A%28%21delete%29&quot;&gt;delete&lt;/a&gt;&lt;/code&gt; $
+&lt;code&gt;&lt;a href=&quot;/?query=%28%28name%3A%28%21from%29%20package%3A%28%21esqueleto%29%20module%3A%28%21Database.Esqueleto%29%29%5E100.0%29%20OR%20%28%28name%3A%28%21from%29%20package%3A%28%21esqueleto%29%29%5E10.0%29%20OR%20name%3A%28%21from%29&quot;&gt;from&lt;/a&gt;&lt;/code&gt; $ \appointment -&gt;
+&lt;code&gt;&lt;a href=&quot;/?query=%28%28name%3A%28%21where_%29%20package%3A%28%21esqueleto%29%20module%3A%28%21Database.Esqueleto%29%29%5E100.0%29%20OR%20%28%28name%3A%28%21where_%29%20package%3A%28%21esqueleto%29%29%5E10.0%29%20OR%20name%3A%28%21where_%29&quot;&gt;where_&lt;/a&gt;&lt;/code&gt; (appointment &lt;code&gt;&lt;a href=&quot;/?query=%28%28name%3A%28%21%27%5E.%27%29%20package%3A%28%21esqueleto%29%20module%3A%28%21Database.Esqueleto%29%29%5E100.0%29%20OR%20%28%28name%3A%28%21%27%5E.%27%29%20package%3A%28%21esqueleto%29%29%5E10.0%29%20OR%20name%3A%28%21%27%5E.%27%29&quot;&gt;^.&lt;/a&gt;&lt;/code&gt; AppointmentDate &lt;code&gt;&lt;a href=&quot;/?query=%28%28name%3A%28%21%3C.%29%20package%3A%28%21esqueleto%29%20module%3A%28%21Database.Esqueleto%29%29%5E100.0%29%20OR%20%28%28name%3A%28%21%3C.%29%20package%3A%28%21esqueleto%29%29%5E10.0%29%20OR%20name%3A%28%21%3C.%29&quot;&gt;&lt;.&lt;/a&gt;&lt;/code&gt; &lt;code&gt;&lt;a href=&quot;/?query=%28%28name%3A%28%21val%29%20package%3A%28%21esqueleto%29%20module%3A%28%21Database.Esqueleto%29%29%5E100.0%29%20OR%20%28%28name%3A%28%21val%29%20package%3A%28%21esqueleto%29%29%5E10.0%29%20OR%20name%3A%28%21val%29&quot;&gt;val&lt;/a&gt;&lt;/code&gt; now)
+&lt;/pre&gt;&lt;p&gt;Unlike &lt;code&gt;&lt;a href=&quot;/?query=%28%28name%3A%28%21select%29%20package%3A%28%21esqueleto%29%20module%3A%28%21Database.Esqueleto%29%29%5E100.0%29%20OR%20%28%28name%3A%28%21select%29%20package%3A%28%21esqueleto%29%29%5E10.0%29%20OR%20name%3A%28%21select%29&quot;&gt;select&lt;/a&gt;&lt;/code&gt;, there is a useful way of using &lt;code&gt;&lt;a href=&quot;/?query=%28%28name%3A%28%21delete%29%20package%3A%28%21esqueleto%29%20module%3A%28%21Database.Esqueleto%29%29%5E100.0%29%20OR%20%28%28name%3A%28%21delete%29%20package%3A%28%21esqueleto%29%29%5E10.0%29%20OR%20name%3A%28%21delete%29&quot;&gt;delete&lt;/a&gt;&lt;/code&gt; that
+ will lead to type ambiguities.  If you want to delete all rows
+ (i.e., no &lt;code&gt;&lt;a href=&quot;/?query=%28%28name%3A%28%21where_%29%20package%3A%28%21esqueleto%29%20module%3A%28%21Database.Esqueleto%29%29%5E100.0%29%20OR%20%28%28name%3A%28%21where_%29%20package%3A%28%21esqueleto%29%29%5E10.0%29%20OR%20name%3A%28%21where_%29&quot;&gt;where_&lt;/a&gt;&lt;/code&gt; clause), you&#39;ll have to use a type signature:&lt;/p&gt;&lt;pre&gt;&lt;code&gt;&lt;a href=&quot;/?query=%28%28name%3A%28%21delete%29%20package%3A%28%21esqueleto%29%20module%3A%28%21Database.Esqueleto%29%29%5E100.0%29%20OR%20%28%28name%3A%28%21delete%29%20package%3A%28%21esqueleto%29%29%5E10.0%29%20OR%20name%3A%28%21delete%29&quot;&gt;delete&lt;/a&gt;&lt;/code&gt; $
+&lt;code&gt;&lt;a href=&quot;/?query=%28%28name%3A%28%21from%29%20package%3A%28%21esqueleto%29%20module%3A%28%21Database.Esqueleto%29%29%5E100.0%29%20OR%20%28%28name%3A%28%21from%29%20package%3A%28%21esqueleto%29%29%5E10.0%29%20OR%20name%3A%28%21from%29&quot;&gt;from&lt;/a&gt;&lt;/code&gt; $ \(appointment :: &lt;code&gt;&lt;a href=&quot;/?query=%28%28name%3A%28%21SqlExpr%29%20package%3A%28%21esqueleto%29%20module%3A%28%21Database.Esqueleto%29%29%5E100.0%29%20OR%20%28%28name%3A%28%21SqlExpr%29%20package%3A%28%21esqueleto%29%29%5E10.0%29%20OR%20name%3A%28%21SqlExpr%29&quot;&gt;SqlExpr&lt;/a&gt;&lt;/code&gt; (&lt;code&gt;&lt;a href=&quot;/?query=%28%28name%3A%28%21Entity%29%20package%3A%28%21persistent%29%20module%3A%28%21Database.Persist.Types%29%29%5E100.0%29%20OR%20%28%28name%3A%28%21Entity%29%20package%3A%28%21persistent%29%29%5E10.0%29%20OR%20name%3A%28%21Entity%29&quot;&gt;Entity&lt;/a&gt;&lt;/code&gt; Appointment)) -&gt;
+return ()
+&lt;/pre&gt;</div>
+</div>
+</div>
+</div>
+</hr>
+<hr />
+</div>
+<footer id="footer"><a href="/">Hayoo 2.0.1 Frontend</a>
+&copy; 2014 Sebastian Philipp
+|
+<a href="/examples">Examples</a>
+|
+<a href="/about">About</a>
+<br />Powered by
+<a href="https://github.com/hunt-framework/hunt">Hunt</a>
+|
+<a href="https://github.com/hunt-framework/hayoo">Github</a>
+</br>
+</footer>
+</body>
+</html>
