@@ -147,6 +147,6 @@ function SearchBox() {
 }
 
 var theSearchBox = new SearchBox()
-theSeachBox.initialize()
+theSearchBox.initialize()
 console.log("=== after initializing theSearchBox")
 
