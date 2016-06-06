@@ -147,6 +147,8 @@ function SearchBox() {
 }
 
 var theSearchBox = new SearchBox()
-theSearchBox.initialize()
-console.log("=== after initializing theSearchBox")
+window.addEventListener('load', function() {
+  console.log("initializing theSearchBox")
+  theSearchBox.initialize() })
+console.log("=== done loading main.js")
 
