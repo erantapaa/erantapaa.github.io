@@ -1,0 +1,23 @@
+
+.label-collapsed {
+  background-color: white;
+  color: #7faee3;
+  margin-left: 20px;
+  border-color: #7faee3;
+  border-width: 1px;
+  border-style: solid;
+  cursor: pointer;
+  font-weight: normal;
+}
+
+.label-expanded {
+  background-color: #7faee3;
+  color: white;
+  margin-left: 20px;
+  border-color: #7faee3;
+  border-width: 1px;
+  border-style: solid;
+  cursor: pointer;
+  font-weight: normal;
+}
+
