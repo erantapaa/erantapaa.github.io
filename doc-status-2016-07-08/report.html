@@ -1,0 +1,36 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script src="report.js"></script>
+<style>
+body { font-family: Helvetica }
+#tbl th.hash { text-align: center }
+#tbl td { padding-right: 10px; font-size: 10pt }
+#tbl th { text-align: left }
+.counter { text-align: right }
+#preface { margin-bottom: 10px }
+.legend { width: 600px }
+.highlight { background-color: lightblue }
+li { padding-top: 5px; padding-bottom: 5px; }
+</style>
+</head>
+<body>
+<div id="main">
+<h3>Package Uploads with Docs Pending</h3>
+<div class="legend">
+<h3>Legend:</h3>
+<ul>
+<li><b>Uploaded</b>, <b>Package</b> and <b>Version</b> are the upload date, package names and versions of packages for which Haddock generation has never been attempted for the latest version.
+<li> The <b>Previous ...</b> columns indicate the latest version of the package for which Haddock generation has been attempted or for which docs were uploaded by the user.
+<li>If the <b>Previous ...</b> columns are all dashes it means that no docs exist for any version of the package.
+</ul>
+To get an explanation of what the data in each row means, click on the number in the <b>#</b> column for a row.
+<br/>
+<br/>
+</div>
+<div id="preface"></div>
+<table id="tbl">
+</table>
+</div>
+</body>
+</html>
