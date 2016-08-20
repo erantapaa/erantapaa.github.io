@@ -1,0 +1,67 @@
+<html>
+<head>
+<script type="text/javascript"
+   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+<style>
+body { width: 520px }
+</style>
+<body>
+
+<h4 id="riddler-solution-for-august-19th-2016">Riddler Solution for August 19<sup>th</sup>, 2016</h4>
+
+<p>Let <script type="math/tex" id="MathJax-Element-2241">y(t)</script> be the location of the farmer, <script type="math/tex" id="MathJax-Element-2242">r(t)</script> be the location of the ram at time <script type="math/tex" id="MathJax-Element-2243">t</script>. Fixing the farmer's speed at unity let <script type="math/tex" id="MathJax-Element-2244">v</script> be the speed of the ram. By considering the case where the ram heads directly for the exit we see that <script type="math/tex" id="MathJax-Element-2245">v</script> must be at least <script type="math/tex" id="MathJax-Element-2246">\sqrt 2</script> if it is to have any chance at catching the farmer.</p>
+
+<p>The constraint that the ram always moves towards the farmer means that the ram's velocity <script type="math/tex" id="MathJax-Element-2247">\dot{r}</script> is:</p>
+
+<p><script type="math/tex; mode=display" id="MathJax-Element-1824">
+  \dot{r} = v \frac{ y-r }{ \| y - r\| }
+ </script></p>
+
+<p>Re-arranging terms and taking the derivatives of both sides yields:</p>
+
+
+
+<p><script type="math/tex; mode=display" id="MathJax-Element-2326">
+    \frac{d}{dt} \Big\{\|y-r\| \dot{r} \Big\} = v(\dot{y} - \dot{r})
+</script></p>
+
+<p>and after applying the chain rule: <br>
+<script type="math/tex; mode=display" id="MathJax-Element-2327">
+\Big(\frac{d}{dt}\|y-r\|\Big)\dot{r} + \|y-r\|\ddot{r} = v(\dot{y} - \dot{r})
+</script> <br>
+Since the norm of <script type="math/tex" id="MathJax-Element-2328">\dot{r}</script> is constant, <script type="math/tex" id="MathJax-Element-2329">\ddot{r}</script> and <script type="math/tex" id="MathJax-Element-2330">\dot{r}</script> are perpendicular, so taking the inner product of the last equation with <script type="math/tex" id="MathJax-Element-2331">\dot{r}</script> yields:</p>
+
+<p><script type="math/tex; mode=display" id="MathJax-Element-2302">
+   \Big(\frac{d}{dt}\|y-r\|\Big)v^2  = v(\dot{y}\cdot\dot{r} - v^2)
+</script></p>
+
+<p>Now integrate both sides from <script type="math/tex" id="MathJax-Element-2303">t = 0</script> to <script type="math/tex" id="MathJax-Element-2304">t = 1</script> and let <script type="math/tex" id="MathJax-Element-2305">v</script> be the exact speed where the ram just catches the farmer, i.e. <script type="math/tex" id="MathJax-Element-2306">r(1) = y(1) = (1,1)</script>. <br>
+<script type="math/tex; mode=display" id="MathJax-Element-2307">
+\begin{align}
+   \int_0^1\frac{d}{dt} \|y-r\| dt & = \|y(1)-r(1)\| - \|y(0)-r(0)\| \\
+     & = 0 - 1 \\
+     & = -1 \\
+ \end{align}
+</script></p>
+
+<p><script type="math/tex; mode=display" id="MathJax-Element-2290">
+\begin{align}
+\int_0^1 \dot{y} \cdot \dot{r} dt & =
+   \dot{y} \cdot \int_0^1 \dot{r} dt \\
+   & = \dot{y} \cdot (r(1) - r(0)) \\
+   & = 1 \\
+\end{align}
+</script> <br>
+Substituting these results yields the following equation for <script type="math/tex" id="MathJax-Element-2291">v</script>: <br>
+<script type="math/tex; mode=display" id="MathJax-Element-2292">
+\begin{align}
+  -v^2 & = v(1-v^2) \\
+   -v & = 1 - v^2 \\
+   v^2 - v - 1 & = 0 \\
+  \end{align}
+</script> <br>
+Clearly <script type="math/tex" id="MathJax-Element-2293">v</script> must be <script type="math/tex" id="MathJax-Element-2294">> 1</script>, so the only sensible solution is <script type="math/tex" id="MathJax-Element-2295">v = \frac{1+\sqrt{5}}{2}</script>.</p>
+</body>
+</html>
