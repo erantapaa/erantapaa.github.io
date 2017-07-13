@@ -56,6 +56,15 @@ h3 {
   page-break-after: avoid;
 }
 
+.column-break {
+  break-before: column;
+  margin-top: 0;
+}
+
+.page-break {
+  break-before: page;
+}
+
 @page {
   width: 8.5in;
   height: 11in;
@@ -79,6 +88,12 @@ h3 {
 .columns2 {
   columns: 2;
   column-count: 2;
+  /* outline-style: dotted; */
+  outline-color: red;
+}
+
+.columns2 > :first-child {
+  margin-top: 0;
 }
 
 .break-after {

@@ -39,10 +39,16 @@ function chord_html_text(v) {
   return html
 }
 
-function fmt_chord_line(nochords, parts) {
+function fmt_chord_line(parts, nochords, full_lines) {
   if (parts.length == 0) {
     return ""
-  } else if (parts.length == 1) {
+  }
+
+  if (full_lines && (parts.length == 1)) {
+    parts.push('')
+  }
+
+  if (parts.length == 1) {
     return lyrics_to_html(parts[0]) + "\n"
   } else if (nochords) {
     lyrics = ""
@@ -119,24 +125,24 @@ function fmt_lyrics_div(div) {
   }
 
   var nochords = div.hasAttribute("nochords") ? 1 : 0
+  var full_lines = div.hasAttributes("full-lines") ? 1 : 0
   var html = ""
   if (div.hasAttribute("two-line")) {
     for (var i = 0; i < lines.length; i += 2) {
       var chords = lines[i]
       var lyrics = lines[i+1]
       var parts = make_parts(chords, lyrics)
-      html += fmt_chord_line(nochords, parts)
+      html += fmt_chord_line(parts, nochords, full_lines)
     }
   } else {
     for (var i = 0; i < lines.length; i++) {
       var txt = lines[i]
       var parts = txt.split(/\[(.*?)\]/)
-      html += fmt_chord_line(nochords, parts)
+      html += fmt_chord_line(parts, nochords, full_lines)
     }
   }
   return html
 }
-
 
 
 // Convert undefined and null to the empty string
