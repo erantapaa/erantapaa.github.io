@@ -25,6 +25,15 @@
   page-break-before: left;
 }
 
+.page-break {
+  break-before: page;
+}
+
+.keep-together {
+  break-inside: avoid-column avoid-page;
+  page-break-inside: avoid;
+}
+
 .title-page:after {
   display: block;
   content: "\A0";
@@ -58,12 +67,13 @@ a, a:visited, a:hover, a:active {
   vertical-align: text-top;
 }
 body {
-  font-family: 'Roboto', "Times New Roman";
+  font-family: sans-serif;
   font-size: 11pt;
 }
 h1 {
   text-align: center;
   font-size: 36pt;
+  margin-bottom: 0;
 }
 h2 {
   text-align: center;
@@ -72,6 +82,12 @@ h2 {
 h3 {
   font-size: 12pt;
   text-decoration: underline;
+}
+
+@media print {
+  a, a:visited, a:hover, a:active {
+    color: black;
+  }
 }
 </style>
 </head>
@@ -220,7 +236,7 @@ h3 {
 124. SEE YOU AGAIN - wiz khalifa ft. Charlie Puth
 125. STRAWBERRY WINE - Deanna Carter
 126. RESPECT - Aretha Franklin
-127. JUST A DREAM - Neyo
+127. JUST A DREAM - Nelly
 128. UNDER THE SEA - From the Little Mermaid
 129. LET IT GO - Idina Menzel
 130. THE FRESH PRINCE OF BEL AIR THEME SONG - Will Smith
@@ -233,9 +249,11 @@ h3 {
 137. KEEP YOUR HEART YOUNG - Brandi Carlile
 </contents>
 
-<h3>2017</h3>
+<div class="keep-together">
+<h3>New Songs</h3>
 <contents prefix="A">
 </contents>
+</div>
 
 </body>
 </html>

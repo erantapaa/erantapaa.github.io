@@ -39,6 +39,10 @@ verse {
   padding-right: 5px;
 }
 
+.smash-top {
+  margin-top: 0;
+}
+
 h1 {
   font-size: 14pt;
   font-weight: normal;
@@ -88,8 +92,6 @@ h3 {
 .columns2 {
   columns: 2;
   column-count: 2;
-  /* outline-style: dotted; */
-  outline-color: red;
 }
 
 .columns2 > :first-child {
@@ -106,9 +108,13 @@ h3 {
   page-break-inside: avoid;
 }
 
-
 .break-before {
   break-before: always;
   column-break-before: always;
+}
+
+.show-outline {
+  outline-style: dotted;
+  outline-color: red;
 }
 

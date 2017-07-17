@@ -125,7 +125,7 @@ function fmt_lyrics_div(div) {
   }
 
   var nochords = div.hasAttribute("nochords") ? 1 : 0
-  var full_lines = div.hasAttributes("full-lines") ? 1 : 0
+  var full_lines = div.hasAttribute("full-lines") ? 1 : 0
   var html = ""
   if (div.hasAttribute("two-line")) {
     for (var i = 0; i < lines.length; i += 2) {
@@ -217,8 +217,21 @@ function getFirstInnerText(tag, def) {
 function setup_title() {
   var title = getFirstInnerText("title", "(NO TITLE)").toUpperCase()
   var artist = get_meta_content("artist")
+  var movie = get_meta_content("movie")
+
+  var title2 = ""
+  if (movie && artist) {
+    title2 = movie + " / " + artist
+  } else if (movie) {
+    title2 = movie
+  } else if (artist) {
+    title2 = artist
+  } else {
+    title2 = "(NO ARTIST)"
+  }
+
   var h1 = document.createElement("h1")
-  h1.innerHTML = title + " &mdash; " + artist
+  h1.innerHTML = title + " &mdash; " + title2
   document.body.insertBefore(h1, document.body.firstChild)
 }
 
