@@ -8598,8 +8598,10 @@ var _user$project$Main$computeCuts = F3(
 	function (r, h, w) {
 		var theta = _elm_lang$core$Basics$acos(
 			1 - (Math.pow(h / r, 2) / 2));
+		var phi = theta / 2;
+		var defect = r * (1 - _elm_lang$core$Basics$cos(phi));
 		var tail = w * _elm_lang$core$Basics$tan(theta / 2);
-		return {ctor: '_Tuple2', _0: theta, _1: tail};
+		return {theta: theta, tail: tail, phi: theta / 2.0, defect: defect};
 	});
 var _user$project$Main$pt = function (_p0) {
 	var _p1 = _p0;
@@ -8784,9 +8786,8 @@ var _user$project$Main$diagram = F5(
 								') '))));
 			});
 		var arc = A5(_user$project$Main$thincircle, 0, 0, r, 1, 'green');
-		var _p2 = A3(_user$project$Main$computeCuts, r, h, w);
-		var theta = _p2._0;
-		var dy = _p2._1;
+		var cuts = A3(_user$project$Main$computeCuts, r, h, w);
+		var theta = cuts.theta;
 		var x1 = r * _elm_lang$core$Basics$cos(theta / 2);
 		var x2 = x1;
 		var x0 = x1 - w;
@@ -9096,24 +9097,24 @@ var _user$project$Main$makeSlider = F7(
 var _user$project$Main$formatFloat = F2(
 	function (n, v) {
 		var s = _elm_lang$core$Basics$toString(v);
-		var _p3 = function () {
-			var _p4 = A2(_elm_lang$core$String$indexes, '.', s);
-			if (_p4.ctor === '[]') {
+		var _p2 = function () {
+			var _p3 = A2(_elm_lang$core$String$indexes, '.', s);
+			if (_p3.ctor === '[]') {
 				return {ctor: '_Tuple2', _0: s, _1: ''};
 			} else {
-				var _p5 = _p4._0;
+				var _p4 = _p3._0;
 				return {
 					ctor: '_Tuple2',
-					_0: A2(_elm_lang$core$String$left, _p5, s),
+					_0: A2(_elm_lang$core$String$left, _p4, s),
 					_1: A2(
 						_elm_lang$core$String$right,
-						(_elm_lang$core$String$length(s) - _p5) - 1,
+						(_elm_lang$core$String$length(s) - _p4) - 1,
 						s)
 				};
 			}
 		}();
-		var m = _p3._0;
-		var f = _p3._1;
+		var m = _p2._0;
+		var f = _p2._1;
 		var f2 = A2(
 			_elm_lang$core$String$left,
 			n,
@@ -9131,10 +9132,8 @@ var _user$project$Main$displayFeet1 = function (val) {
 	return A2(_user$project$Main$unitDisplay, 'feet', feet);
 };
 var _user$project$Main$sCuts = function (m) {
-	var _p6 = A3(_user$project$Main$computeCuts, m.radius, m.paverHeight, m.paverWidth);
-	var theta = _p6._0;
-	var dy = _p6._1;
-	var degs = (theta / (2 * _elm_lang$core$Basics$pi)) * 180;
+	var cuts = A3(_user$project$Main$computeCuts, m.radius, m.paverHeight, m.paverWidth);
+	var degs = (cuts.phi / _elm_lang$core$Basics$pi) * 180;
 	return {
 		ctor: '::',
 		_0: A2(
@@ -9142,7 +9141,7 @@ var _user$project$Main$sCuts = function (m) {
 			{ctor: '[]'},
 			{
 				ctor: '::',
-				_0: _user$project$Main$label('Theta:'),
+				_0: _user$project$Main$label('Phi:'),
 				_1: {
 					ctor: '::',
 					_0: _elm_lang$html$Html$text(
@@ -9166,19 +9165,38 @@ var _user$project$Main$sCuts = function (m) {
 						_0: _elm_lang$html$Html$text(
 							A2(
 								_elm_lang$core$Basics_ops['++'],
-								A2(_user$project$Main$formatFloat, 1, dy),
+								A2(_user$project$Main$formatFloat, 1, cuts.tail),
 								' inches')),
 						_1: {ctor: '[]'}
 					}
 				}),
-			_1: {ctor: '[]'}
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$div,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: _user$project$Main$label('Defect:'),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$html$Html$text(
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									A2(_user$project$Main$formatFloat, 1, cuts.defect),
+									' inches')),
+							_1: {ctor: '[]'}
+						}
+					}),
+				_1: {ctor: '[]'}
+			}
 		}
 	};
 };
 var _user$project$Main$update = F2(
 	function (x, m) {
-		var _p7 = x;
-		switch (_p7.ctor) {
+		var _p5 = x;
+		switch (_p5.ctor) {
 			case 'PaverWidth':
 				return _elm_lang$core$Native_Utils.update(
 					m,
@@ -9186,7 +9204,7 @@ var _user$project$Main$update = F2(
 						paverWidth: A2(
 							_elm_lang$core$Result$withDefault,
 							m.paverWidth,
-							_elm_lang$core$String$toFloat(_p7._0))
+							_elm_lang$core$String$toFloat(_p5._0))
 					});
 			case 'PaverHeight':
 				return _elm_lang$core$Native_Utils.update(
@@ -9195,7 +9213,7 @@ var _user$project$Main$update = F2(
 						paverHeight: A2(
 							_elm_lang$core$Result$withDefault,
 							m.paverHeight,
-							_elm_lang$core$String$toFloat(_p7._0))
+							_elm_lang$core$String$toFloat(_p5._0))
 					});
 			case 'Radius':
 				return _elm_lang$core$Native_Utils.update(
@@ -9204,7 +9222,7 @@ var _user$project$Main$update = F2(
 						radius: A2(
 							_elm_lang$core$Result$withDefault,
 							m.radius,
-							_elm_lang$core$String$toFloat(_p7._0))
+							_elm_lang$core$String$toFloat(_p5._0))
 					});
 			case 'Zoom':
 				return _elm_lang$core$Native_Utils.update(
@@ -9213,7 +9231,7 @@ var _user$project$Main$update = F2(
 						zoom: A2(
 							_elm_lang$core$Result$withDefault,
 							m.zoom,
-							_elm_lang$core$String$toFloat(_p7._0))
+							_elm_lang$core$String$toFloat(_p5._0))
 					});
 			default:
 				return _elm_lang$core$Native_Utils.update(
@@ -9222,7 +9240,7 @@ var _user$project$Main$update = F2(
 						npavers: A2(
 							_elm_lang$core$Result$withDefault,
 							m.npavers,
-							_elm_lang$core$String$toInt(_p7._0))
+							_elm_lang$core$String$toInt(_p5._0))
 					});
 		}
 	});
@@ -9231,6 +9249,10 @@ var _user$project$Main$Model = F5(
 		return {paverWidth: a, paverHeight: b, radius: c, zoom: d, npavers: e};
 	});
 var _user$project$Main$initialModel = A5(_user$project$Main$Model, 14, 24, 10 * 12, 1.0, 1);
+var _user$project$Main$Cuts = F3(
+	function (a, b, c) {
+		return {theta: a, tail: b, defect: c};
+	});
 var _user$project$Main$NPavers = function (a) {
 	return {ctor: 'NPavers', _0: a};
 };
@@ -9243,9 +9265,9 @@ var _user$project$Main$sNpavers = function (m) {
 		2,
 		_user$project$Main$NPavers,
 		m.npavers,
-		function (_p8) {
+		function (_p6) {
 			return _user$project$Main$rfield(
-				_elm_lang$core$Basics$toString(_p8));
+				_elm_lang$core$Basics$toString(_p6));
 		});
 };
 var _user$project$Main$Zoom = function (a) {
@@ -9260,9 +9282,9 @@ var _user$project$Main$sZoom = function (m) {
 		0.1,
 		_user$project$Main$Zoom,
 		m.zoom,
-		function (_p9) {
+		function (_p7) {
 			return _user$project$Main$rfield(
-				A2(_user$project$Main$formatFloat, 1, _p9));
+				A2(_user$project$Main$formatFloat, 1, _p7));
 		});
 };
 var _user$project$Main$Radius = function (a) {
@@ -9277,9 +9299,9 @@ var _user$project$Main$sRadius = function (m) {
 		1,
 		_user$project$Main$Radius,
 		m.radius,
-		function (_p10) {
+		function (_p8) {
 			return _user$project$Main$spn(
-				_user$project$Main$displayFeet1(_p10));
+				_user$project$Main$displayFeet1(_p8));
 		});
 };
 var _user$project$Main$PaverHeight = function (a) {
@@ -9294,9 +9316,9 @@ var _user$project$Main$sHeight = function (m) {
 		0.1,
 		_user$project$Main$PaverHeight,
 		m.paverHeight,
-		function (_p11) {
+		function (_p9) {
 			return _user$project$Main$spn(
-				_user$project$Main$displayInches(_p11));
+				_user$project$Main$displayInches(_p9));
 		});
 };
 var _user$project$Main$PaverWidth = function (a) {
@@ -9311,9 +9333,9 @@ var _user$project$Main$sWidth = function (m) {
 		0.1,
 		_user$project$Main$PaverWidth,
 		m.paverWidth,
-		function (_p12) {
+		function (_p10) {
 			return _user$project$Main$spn(
-				_user$project$Main$displayInches(_p12));
+				_user$project$Main$displayInches(_p10));
 		});
 };
 var _user$project$Main$view = function (m) {
