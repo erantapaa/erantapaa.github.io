@@ -8831,7 +8831,7 @@ var _user$project$Main$diagram = F5(
 								_0: {ctor: '_Tuple2', _0: x2, _1: y2},
 								_1: {
 									ctor: '::',
-									_0: {ctor: '_Tuple2', _0: x3, _1: y3},
+									_0: {ctor: '_Tuple2', _0: x5, _1: y5},
 									_1: {
 										ctor: '::',
 										_0: {ctor: '_Tuple2', _0: x4, _1: y4},
@@ -8845,20 +8845,23 @@ var _user$project$Main$diagram = F5(
 					_1: {ctor: '[]'}
 				});
 		};
-		var pavers = A2(
-			_elm_lang$core$Basics_ops['++'],
-			A2(
-				_elm_lang$core$List$map,
-				function (i) {
-					return paver(i);
-				},
-				A2(_elm_lang$core$List$range, 1, npavers - 1)),
-			A2(
-				_elm_lang$core$List$map,
-				function (i) {
-					return paver(0 - i);
-				},
-				A2(_elm_lang$core$List$range, 1, npavers - 1)));
+		var pavers = function () {
+			var k = ((npavers - 1) / 2) | 0;
+			return A2(
+				_elm_lang$core$Basics_ops['++'],
+				A2(
+					_elm_lang$core$List$map,
+					function (i) {
+						return paver(i);
+					},
+					A2(_elm_lang$core$List$range, 1, k)),
+				A2(
+					_elm_lang$core$List$map,
+					function (i) {
+						return paver(0 - i);
+					},
+					A2(_elm_lang$core$List$range, 1, k)));
+		}();
 		var elements = A2(
 			_elm_lang$core$Basics_ops['++'],
 			{
