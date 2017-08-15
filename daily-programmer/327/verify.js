@@ -1,6 +1,6 @@
 
 // var real_words_url = "https://pastebin.com/raw/trMz6nWQ"
-var real_words_url = "real_words.txt"
+var real_words_url = "words-12.txt"
 
 var blocks15 = "a am irs lnr aeiou dinst aegko deglptz aeinouwy bcdeglms cdilmorsx adeghikruvy fhjkmnpswyz bcefjmnopqtvw bcfhklmnqstuvxz".split(' ')
 
