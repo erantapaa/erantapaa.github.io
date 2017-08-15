@@ -1,6 +1,6 @@
 
 // var real_words_url = "https://pastebin.com/raw/trMz6nWQ"
-var real_words_url = "real_words.txt"
+var real_words_url = "https://erantapaa.github.io/letter-blocks/real_words.txt"
 
 var blocks15 = "a am irs lnr aeiou dinst aegko deglptz aeinouwy bcdeglms cdilmorsx adeghikruvy fhjkmnpswyz bcefjmnopqtvw bcfhklmnqstuvxz".split(' ')
 
@@ -99,7 +99,7 @@ function test1() {
 
 function find_cover(blocks, b, word, path) {
   if (word.length == 0) {
-    return path + '.'.repeat(blocks.length)
+    return path + '.'.repeat(blocks.length - b)
   }
   if (b >= blocks.length) {
     return null
