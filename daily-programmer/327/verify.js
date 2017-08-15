@@ -1,6 +1,6 @@
 
 // var real_words_url = "https://pastebin.com/raw/trMz6nWQ"
-var real_words_url = "https://erantapaa.github.io/letter-blocks/real_words.txt"
+var real_words_url = "real_words.txt"
 
 var blocks15 = "a am irs lnr aeiou dinst aegko deglptz aeinouwy bcdeglms cdilmorsx adeghikruvy fhjkmnpswyz bcefjmnopqtvw bcfhklmnqstuvxz".split(' ')
 
@@ -12,6 +12,7 @@ function init() {
     $("#blocks").val("")
     load_words(real_words_url)
     $("#blocks").blur(blocks_changed)
+    $("#one_word").change(one_word_changed)
     $("#check_one_btn").click(check_one_word) 
     $("#check_all_btn").click(check_all_words)
     set_blocks(blocks15)
@@ -43,6 +44,10 @@ function get_blocks() {
   return blocks
 }
 
+function one_word_changed() {
+  check_one_word()
+}
+
 function blocks_changed() {
   var blocks = get_blocks()
   var text = blocks.join("\n")
@@ -65,6 +70,11 @@ function load_words(url) {
   });
 }
 
+function vreport(msg) {
+  var text = msg.split('').join("\n")
+  $("#solution").val(text)
+}
+
 function report(msg) {
   $("#cover_solution").val(msg)
 }
@@ -76,19 +86,21 @@ function check_one_word() {
     $("#one_word").val(w2)
   }
   report("(thinking)")
-  var msg = check_word(w2)
-  report(msg)
+  vreport("")
+  var sol = check_word(w2)
+  if (sol === null) {
+    report("No solution")
+  } else {
+    report(sol)
+    vreport(sol)
+  }
 }
 
 function check_word(word) {
   word.replace(/[^a-z]/g,'')
   var blocks = get_blocks()
   var sol = find_cover(blocks, 0, word, "")
-  if (sol === null) {
-    return("No solution")
-  } else {
-    return(sol)
-  }
+  return sol
 }
 
 function test1() {
