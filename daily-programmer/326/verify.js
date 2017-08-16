@@ -7,28 +7,57 @@ var blocks15 = "a am irs lnr aeiou dinst aegko deglptz aeinouwy bcdeglms cdilmor
 var real_words = []
 
 function init() {
-  console.log("in init")
+  console.log("in init here")
   $(document).ready(function() {
     $("#blocks").val("")
-    load_words(real_words_url)
     $("#blocks").blur(blocks_changed)
     $("#one_word").change(one_word_changed)
     $("#check_one_btn").click(check_one_word) 
     $("#check_all_btn").click(check_all_words)
+    $("#load_words_btn").click(load_words)
+    var url = new URL(window.location);
+    let params = new URLSearchParams(url.search);
+    var words_url = url.searchParams.get("words");
+    if (!words_url) {
+      words_url = real_words_url
+    }
+    $("#words_url").val(words_url)
+    load_words()
     set_blocks(blocks15)
   })
 }
 
-function update_words(words) {
+function load_words() {
+  var words_url = $("#words_url").val()
+  if (words_url) {
+    $("#word_count").html("Loading...")
+    jQuery.ajax({
+      'url': words_url,
+      'dataType': 'text',
+      'success': update_words
+    });
+  }
+}
+
+function update_words(data) {
+  var words = data.split(/\s+/)
   real_words = words
-  console.log("in update_words")
   $("#word_count").html( words.length )
+  clear_checked_words()
+}
+
+function clear_checked_words() {
+  $("#check_status").html("")
+  $("#solution").val('')
+  $("#report").val('')
+  $("#cover_solution").val('')
 }
 
 function set_blocks(blocks) {
   var text = blocks.join("\n")
   $("#blocks").val(text)
   $("#block_count").html( blocks.length )
+  clear_checked_words()
 }
 
 function get_blocks() {
@@ -55,19 +84,6 @@ function blocks_changed() {
     $("#blocks").val(text)
   }
   $("#block_count").html( blocks.length )
-}
-
-function callback(data) {
-  var words = data.split(/\s+/)
-  update_words(words)
-}
-
-function load_words(url) {
-  jQuery.ajax({
-    'url': url,
-    'dataType': 'text',
-    'success': callback
-  });
 }
 
 function vreport(msg) {
