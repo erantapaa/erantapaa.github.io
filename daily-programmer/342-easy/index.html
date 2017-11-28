@@ -25,6 +25,7 @@ input { display: table-cell; }
 <button id="divideBtn">Divide!</button>
 </div>
 <div id="output"></div>
+<div id="error"></div>
 <script>
 function showLatexOutput(data) {
   let words = data.trim().split(/\s+/)
@@ -47,12 +48,12 @@ function dochallenge(a,b) {
 }
 
 function validPoly(x) {
-  let coeff = '\\s*(-?\\d+)'
-  let termx = `(${coeff})?\\s*x(^\\d+)?`
-  let term = `(${coeff})|(${termx})`
-  let poly = `^${term}(\\s*[+-]${term})*$`
-  let re = new RegExp(poly)
-  return re.test(x)
+  let coeff = '(?:\\s*(-?\\d+))'
+  let xterm = '(?:\\s*x(\\^\\d+)?)'
+  let termx = `(?:${coeff}?${xterm})`
+  let term = `(?:${coeff}|${termx})`
+  let poly = `^(${term})(\\s*[-+]${term})*$`
+  return new RegExp(poly).test(x)
 }
 
 function render2() {
@@ -84,6 +85,7 @@ function render2() {
   let rnd = Math.random()*100
   let body = `formula=${formula}&preamble=${preamble}&fsize=17px&mode=0&out=1&remhost=quicklatex.com&rnd=${rnd}`
   $("#output").html('<img src="http://www.quicklatex.com/images/progressbar.gif">')
+  console.log("body:", body)
   cors_request( { method: 'POST', url: "http://www.quicklatex.com/latex3.f", data: body },
                 showLatexOutput, showFailure )
 }
