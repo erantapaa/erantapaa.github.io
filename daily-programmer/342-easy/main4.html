@@ -1,0 +1,40 @@
+<html>
+<head>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<style>
+table { border-collapse: collapse; }
+td { text-align: right; }
+.bop { padding-left: 3px; padding-right: 3px; }
+.tdop { text-align: center; padding-left: 4px; }
+.tdmul { color: red; border-style: solid; border-width: 0 0 2px 0; }
+.tddividend { color: blue; border-style: solid; border-width: 2px 0 0 0; }
+.tddividend1st { color: blue; border-style: solid; border-width: 2px 0 0 2px; }
+.tddivisor { color: green; }
+.tdquotient { color: purple; }
+
+form  { display: table;      }
+p     { display: table-row;  }
+label { display: table-cell; }
+input { display: table-cell; }
+#error { font-family: monospace; color: red; }
+.padded { padding-top: 10px; }
+
+</style>
+</head>
+  <body>
+<div id="challenges" class="padded"></div>
+<div class="padded">
+  <p class="padded">Enter polynomial coefficients, e.g. <tt>3 -1 1</tt> for <tt>3x^2 - x + 1</tt>.
+<form id="theform" class="padded">
+<p><label for="dividend">Dividend:</label>
+<input id="dividend" size=50>
+<p><label for="divisor">Divisor:</label>
+<input id="divisor" size=50>
+</form>
+<button id="divideBtn">Divide!</button>
+</div>
+<div id="output"></div>
+<div id="error"></div>
+<script src="main4.js"></script>
+  </body>
+</html>
