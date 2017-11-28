@@ -14,7 +14,7 @@
                                111
 */
 
-let Superscipts = [ 0, 185, 178, 179, 8308, 8309, 8310, 8311, 8312, 8313 ]
+let Superscripts = [ 0, 185, 178, 179, 8308, 8309, 8310, 8311, 8312, 8313 ]
 
 function xterm(v, k) {
   if (k > 0) {
@@ -33,8 +33,9 @@ function xterm(v, k) {
 function exponent(k) {
   if (k <= 0) return ""
   if (k == 1) return "x"
-  if (k <= 9) return "x" + String.fromCharCode(Superscipts[k])
-  return ("x^" + k)
+  return "x<sup>" + k + "</sup>"
+  // if (k <= 9) return "x" + String.fromCharCode(Superscripts[k])
+  // return ("x^" + k)
 }
 
 function render_tr(r, n, ncols) {
