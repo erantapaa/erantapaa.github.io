@@ -1,0 +1,24 @@
+<html>
+<head>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="main.js"></script>
+<style>
+form  { display: table;      }
+p     { display: table-row;  }
+label { display: table-cell; }
+input { display: table-cell; }
+#error { font-family: monospace; color: red; }
+</style>
+</head>
+<body>
+<div id="challenges"></div>
+<p>Enter polynomials in <tt>x</tt>, e.g. <tt>3x^2 - x + 1</tt>:
+<form>
+  <p><label for="dividend">Dividend:</label>
+     <input id="dividend" size=50>
+  <p><label for="divisor">Divisor:</label>
+      <input id="divisor" size=50>
+</form>
+<button id="divideBtn">Divide!</button>
+<div id="output"></div>
+</body>
