@@ -8,17 +8,22 @@ p     { display: table-row;  }
 label { display: table-cell; }
 input { display: table-cell; }
 #error { font-family: monospace; color: red; }
+.padded { padding-top: 10px; }
 </style>
 </head>
 <body>
-<div id="challenges"></div>
-<p>Enter polynomials in <tt>x</tt>, e.g. <tt>3x^2 - x + 1</tt>:
-<form>
+<p>A mashup of the LaTeX <tt>polynom</tt> package and <a href="quicklatex.com">QuickLaTeX.com</a>
+
+<div id="challenges" class="padded"></div>
+<div class="padded">
+<p class="padded">Enter polynomials in <tt>x</tt>, e.g. <tt>3x^2 - x + 1</tt>:
+<form id="theform" class="padded">
   <p><label for="dividend">Dividend:</label>
      <input id="dividend" size=50>
   <p><label for="divisor">Divisor:</label>
       <input id="divisor" size=50>
 </form>
 <button id="divideBtn">Divide!</button>
+</div>
 <div id="output"></div>
 </body>
