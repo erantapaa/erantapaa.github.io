@@ -1,0 +1,116 @@
+<html>
+<head>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<style>
+form  { display: table;      }
+p     { display: table-row;  }
+label { display: table-cell; }
+input { display: table-cell; }
+#error { font-family: monospace; color: red; }
+.padded { padding-top: 10px; }
+</style>
+</head>
+<body>
+<p>A mashup of the LaTeX <tt>polynom</tt> package and <a href="quicklatex.com">QuickLaTeX.com</a>
+
+<div id="challenges" class="padded"></div>
+<div class="padded">
+<p class="padded">Enter polynomials in <tt>x</tt>, e.g. <tt>3x^2 - x + 1</tt>:
+<form id="theform" class="padded">
+  <p><label for="dividend">Dividend:</label>
+     <input id="dividend" size=50>
+  <p><label for="divisor">Divisor:</label>
+      <input id="divisor" size=50>
+</form>
+<button id="divideBtn">Divide!</button>
+</div>
+<div id="output"></div>
+<script>
+function showLatexOutput(data) {
+  let words = data.trim().split(/\s+/)
+  url = words[1]
+  $("#output").html(`<img src="${url}">`)
+  $("#output").show()
+  $("#error").hide()
+}
+
+function showFailure(msg) {
+  $("#output").hide()
+  $("#error").text(msg)
+  $("#error").show()
+}
+
+function dochallenge(a,b) {
+  $("#dividend").val(a)
+  $("#divisor").val(b)
+  render2()
+}
+
+function validPoly(x) {
+  let coeff = '\\s*(-?\\d+)'
+  let termx = `(${coeff})?\\s*x(^\\d+)?`
+  let term = `(${coeff})|(${termx})`
+  let poly = `^${term}(\\s*[+-]${term})*$`
+  let re = new RegExp(poly)
+  return re.test(x)
+}
+
+function render2() {
+  let a = $("#dividend").val().trim()
+  let b = $("#divisor").val().trim()
+
+  if (!validPoly(b)) {
+    showFailure("Divisor not a polynomial in x: "+b)
+    return;
+  }
+  if (!validPoly(a)) {
+    showFailure("Dividend not a polynomial in x: " + a)
+    return;
+  }
+
+  let formula = `\\polylongdiv{${a}}{${b}}`
+  let preamble = `
+  \\usepackage{amsmath}
+  \\usepackage{amsfonts}
+  \\usepackage{amssymb}
+  \\usepackage{polynom}`
+
+  formula = formula.replace(/%/g,"%25");
+  formula = formula.replace(/&/g,"%26");
+
+  preamble = preamble.replace(/%/g,"%25");
+  preamble = preamble.replace(/&/g,"%26");
+
+  let rnd = Math.random()*100
+  let body = `formula=${formula}&preamble=${preamble}&fsize=17px&mode=0&out=1&remhost=quicklatex.com&rnd=${rnd}`
+  $("#output").html('<img src="http://www.quicklatex.com/images/progressbar.gif">')
+  cors_request( { method: 'POST', url: "http://www.quicklatex.com/latex3.f", data: body },
+                showLatexOutput, showFailure )
+}
+
+function cors_request(options, success, error) {
+  // set: options.method, options.url, options.data
+  var cors_api_url = 'https://cors-anywhere.herokuapp.com/';
+  var x = new XMLHttpRequest();
+  x.open(options.method, cors_api_url + options.url);
+  x.onload = function() { success(x.responseText || '') },
+  x.onerror = function() { error(x.statusText) }
+  if (/^POST/i.test(options.method)) {
+    x.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+  }
+  x.send(options.data)
+}
+
+function init() {
+let challenges = [ ["4x^3 + 2x^2 - 6x + 3", "x - 3"], ["2x^4 - 9x^3 + 21x^2 - 26x + 12", "2x - 3"], ["10x^4 - 7x^2 - 1", "x^2 - x + 3"] ]
+for (let i = 0; i < challenges.length; ++i) {
+  let click = () => { dochallenge( challenges[i][0], challenges[i][1]) }
+  $("#challenges").append('<p>').append( $("<button>").text(`Challenge ${i+1}`).click( click) )
+}
+$("#divideBtn").click(render2)
+}
+
+$(document).ready(init)
+
+</script>
+</body>
