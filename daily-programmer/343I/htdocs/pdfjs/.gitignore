@@ -1,0 +1,10 @@
+*~
+local.mk
+tags
+.DS_Store
+Makefile
+node_modules/
+extensions/
+examples/node/svgdump/
+tmp/
+web/compressed.tracemonkey-pldi-09.pdf
