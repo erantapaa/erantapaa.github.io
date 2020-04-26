@@ -1,0 +1,141 @@
+<style>
+    .highlighted { color: red }
+    #count-div {
+        font-family: "Times New Roman", Times, serif;
+        height: 40px;
+        text-align: center;
+        font-size: 30pt;
+    }
+    #the-div {
+        font-family: "Times New Roman", Times, serif;
+        height: 300px;
+        font-size: 30pt;
+        text-align: center;
+    }
+</style>
+
+<script>
+    let Beat = 500  // duration of one beat in millis
+
+    async function delay(beats) {
+        let p = new Promise((resolve, reject) => {
+            setTimeout( () => resolve(1), beats*Beat)
+        })
+        await p;
+    }
+
+    function build_lyrics(elt, lyrics) {
+        let words = lyrics.split( /(\/+)/)
+        let spans = []
+        for (let i = 0; i+1 < words.length; i += 2) {
+            let w = words[i]
+            let beats = words[i+1].length
+            let s = document.createElement("span")
+            s.appendChild( document.createTextNode(w) )
+            elt.appendChild(s)
+            spans.push([ s, beats] )
+        }
+        let play = async function() {
+            for (let sb of spans) {
+                let [s,b] = sb
+                s.classList.add("highlighted")
+                await delay(b)
+            }
+        }
+        return play
+    }
+
+    function build_lines(div, lines) {
+        let playfns = []
+        for (let line of lines) {
+            let p = document.createElement("p")
+            let play = build_lyrics(p, line)
+            div.appendChild(p)
+            playfns.push(play)
+        }
+        let playall = async function () {
+            for (let f of playfns) {
+                await f()
+            }
+        }
+        return playall
+    }
+
+    function init_lyrics(lyrics) {
+        let words = lyrics.split( /(\/+)/)
+        // Create the spans
+        let div = document.getElementById("the-div")
+        let spans = []
+        for (let i = 0; i+1 < words.length; i += 2) {
+            let w = words[i]
+            let beats = words[i+1].length
+            let s = document.createElement("span")
+            s.appendChild( document.createTextNode(w) )
+            div.appendChild(s)
+            spans.push([ s, beats] )
+        }
+        let play = async function() {
+            for (let sb of spans) {
+                let [s,b] = sb
+                s.classList.add("highlighted")
+                await delay(b)
+            }
+        }
+        return play
+    }
+
+    function clear_lyrics() {
+        let d = document.getElementById("the-div")
+        d.innerHTML = ""
+    }
+
+    async function count_in() {
+        let d = document.getElementById("count-div")
+        let p = build_lyrics(d, "5/ \u2014/ 6/ \u2014/ 5/ 6/ 7/")
+        await p()
+    }
+
+    function clear_elt(div) {
+        div.innerHTML = ""
+    }
+
+    function clear_elt_id(name) {
+        let elt = document.getElementById(name)
+        if (elt) {
+            elt.innerHTML = ""
+        }
+    }
+
+    async function foo2() {
+        let div = document.getElementById("the-div")
+        let count_div = document.getElementById("count-div")
+
+        count_div.style.visibility = "visible"
+        clear_elt(count_div)
+
+        clear_elt(div)
+        let p1 = build_lines(div, [ "Happy/ birth/day/ to/ you/,/", "Happy/ birth/day/ to/ you/,/"])
+        await count_in()
+        count_div.style.visibility = "hidden"
+
+        await p1()
+        clear_elt(div)
+        let p2 = build_lines(div, [ "Happy/ birth/day/ dear/ Tou/,/", "Happy/ birth/day/ to/ you!////"])
+        await p2()     
+    }
+
+    function play() {
+        let bpm = Math.floor( document.getElementById("bpm").value )
+        Beat = 1000.0*60 / bpm
+        clear_elt_id("the-div")
+        clear_elt_id("count-div")
+        foo2().then( (r,e) => {} )
+    }
+</script>
+
+<div id="count-div">   
+</div>
+<div id="the-div">
+</div>
+Metronome: <input id=bpm type=number size=4 value=80 style="width: 40px"> bpm.
+<button onclick="play()">Play</button>
