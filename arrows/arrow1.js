@@ -148,7 +148,7 @@ function create_table(path, info) {
 
     let fields = ["i", "t", "x", "y", "x_d", "y_d", "x_dd", "y_dd"]
     let field_titles = [ "<br>step", "t<br>sec.", "x<br>ft", "y<br>ft", "x_d<br>ft/s", "y_d<br>ft/s", "x_dd⨯𝚫t", "y_dd⨯𝚫t",
-                         "Drop<br>inches", "Speed<br>ft/s", "KE<br>ft lbs", "Momentum<br>ft lbs/sec"]
+                         "Drop<br>inches", "Speed<br>ft/s", "KE<br>ft lbf", "Momentum<br>ft lb/sec"]
     for (let f of field_titles) {
         let th = document.createElement("th")
         th.innerHTML = f
