@@ -297,7 +297,7 @@ function handle_tform(e) {
 
         // computation are in lbs, feet, seconds
     
-        let gravity_g = 32.22
+        let gravity_g = 32.17
         let x_d = speed*Math.cos(angle*Math.PI/180)
         let y_d = speed*Math.sin(angle*Math.PI/180)
         let x0 = 0
