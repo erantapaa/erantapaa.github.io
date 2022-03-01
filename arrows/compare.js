@@ -80,7 +80,7 @@ class Gdrag {
     }
 }
 
-function simulate(niters, Y0, t0, G, dt) {
+function simulate_RK4(niters, Y0, t0, G, dt) {
     // returns an array of [t, x_dd, y_dd, x_d, y_d, x, y]
     // Y0 = [x_d, y_d, x, y] at time 0
     let path = []
@@ -105,30 +105,112 @@ function simulate(niters, Y0, t0, G, dt) {
     return path
 }
 
-function test1(niters = 1000, y0 = 1, theta = 45, v0 = 1, dt = 0.01) {
-    let G = new Ggravity(9.8)
-    let x_d = v0*Math.cos(theta*Math.PI/180)
-    let y_d = v0*Math.sin(theta*Math.PI/180)
-    let x0 = 0
-    let Y0 = [x_d, y_d, x0, y0]
-    let path = simulate(niters, Y0, 0, G, dt)
+function simulate_simple(niters, Y0, t0, G, dt) {
+    // simulate trajectory using the simple solver
+    let [vx, vy, x, y] = Y0
+    let t = t0
+    let Y = [...Y0]
+    let path = []
+
+    for (let i = 0; i < niters; ++i) {
+        let [ax, ay, x_d, y_d ] = G.computeG(Y, t)
+        path.push( {
+            t: t,
+            x: x,
+            y: y,
+            x_d: vx,
+            y_d, vy,
+            x_dd: ax*dt,
+            y_dd: ay*dt
+        })
+        if (y <= 0) break
+        vx += ax*dt
+        vy += ay*dt
+        x += vx*dt
+        y += vy*dt
+        t += dt
+    }
     return path
 }
 
-function plot_xy(path, layout) {
+function build_xy_trace(path) {
     let xs = []
     let ys = []
     for (let i = 0; i < path.length; ++i) {
         xs.push( path[i].x )
         ys.push( path[i].y )
     }
+    return { x: xs, y: ys }
+}
 
-    Plotly.newPlot('myDiv', [{x: xs, y:ys, mode: 'lines' }], layout)
+function remove_all_data_rows(table) {
+    // remove all data rows from a table
+    // assumes all data rows appear at the end of the table
+    let child = table.lastElementChild
+    while (child) {
+        if ((child.nodeName == 'TR') && (child.classList.contains("tbl-header"))){
+            table.removeChild(child)
+            child = table.lastElementChild
+        } else {
+            break
+        }
+    }
+}
+
+class TableBuilder {
+    constructor() {
+    }
+
+    td_row(values) {
+        return values.map((x) => `<td>${ String(round(x)) }</td>`).join('')
+    }
+    columns() {
+        return ['t', 'x', 'y', 't', 'x', 'y', 'dx', 'dy', 'dy (in.)']
+    }
+
+    header_tr(innerHTML) {
+        return `<tr class="tbl-header">${innerHTML}</tr>`
+    }
+
+    header_row1() {
+        return this.header_tr(`
+    <th colspan=3>RK4</td>
+    <th colspan=3>Simple</td>
+    <th colspan=3>Difference</td>
+    `)
+    }
+
+    header_row2() {
+        return (this.columns().map((x) => `<th>${x}</th>`).join(''))
+    }
+
+    header(tbl) {
+        return `${this.header_row1()}${this.header_row2()}`
+    }
+
+    build_row(path1, path2, i) {
+        let p1 = (i < path1.length ? path1[i] : null)
+        let p2 = (i < path2.length ? path2[i] : null)
+        let c1 = p1 ? this.td_row([p1.t, p1.x, p1.y]) : '<td colspan=3>---</td>'
+        let c2 = p2 ? this.td_row([p2.t, p2.x, p2.y]) : '<td colspan=3>---</td>'
+        let c3 = (p1 && p2) ? this.td_row( [p1.x - p2.x, p1.y - p2.y, (p1.y-p2.y)*12]) : '<td colspan=3>---</td>'
+        return `<tr>${c1}${c2}${c3}</tr>`
+    }
+
+    build_table(path1, path2) {
+        let maxi = Math.max(path1.length, path2.length)
+        return `<table id="output-table">
+    ${this.header()}
+    ${ [...Array(maxi).keys() ].map( (i) => this.build_row(path1, path2, i) ).join('')
+    }
+    </table>
+        `
+    }
 }
 
 function round(x) {
     // trim a floating point number
-    return Math.round(x*1000000)/1000000;
+    return parseFloat(x.toExponential(3))
 }
 
 function add_td(elt, value) {
@@ -137,48 +219,34 @@ function add_td(elt, value) {
     elt.appendChild(td)
 }
 
-function create_table(path, info) {
-    let mass = info.mass  // mass in lbs
-    let height = info.height // initial height in feet
-    let gravity = 32.17 // gravity in ft/sec^2
-
-    // create a table of the path data hanging off of the element root
-    let table = document.createElement("table")
-    let header = document.createElement("tr")
-
-    let fields = ["i", "t", "x", "y", "x_d", "y_d", "x_dd", "y_dd"]
-    let field_titles = [ "<br>step", "t<br>sec.", "x<br>ft", "y<br>ft", "x_d<br>ft/s", "y_d<br>ft/s", "x_dd⨯𝚫t", "y_dd⨯𝚫t",
-                         "Drop<br>inches", "Speed<br>ft/s", "KE<br>ft lbf", "Momentum<br>ft lb/sec"]
-    for (let f of field_titles) {
-        let th = document.createElement("th")
-        th.innerHTML = f
-        header.appendChild(th)
+function format_row(i, row, tr) {
+    // console.log("row", i, ":", row)
+    if (row) {
+        add_td(tr, row.t)
+        add_td(tr, row.x)
+        add_td(tr, row.y)        
+    } else {
+        let td = document.createElement("td")
+        td.setAttribute("colspan", 3)
+        // td.innerHTML = "(empty)"
+        tr.appendChild(td)
     }
-    table.appendChild(header)
+}
 
-    for (let i = 0; i < path.length; ++i) {
+function build_multipath_table(table, paths, fmtfn) {
+    // assume row i in both paths correspond to the same time
+    // assume table is empty of data rows
+    // fmt is the function which formats a row from a path
+    let lengths = paths.map( (a) => a.length )
+    let maxi = Math.max( ...lengths )
+    for (let i = 0; i < maxi; ++i) {
         let tr = document.createElement("tr")
-        add_td(tr, i)
-        let r = path[i]
-        add_td(tr, r.t)
-        add_td(tr, r.x)
-        add_td(tr, r.y)
-        add_td(tr, r.x_d)
-        add_td(tr, r.y_d)
-        add_td(tr, r.x_dd)
-        add_td(tr, r.y_dd)
-        let drop = (height - r.y)*12 // in inches
-        add_td(tr, drop)
-        let velocity = Math.sqrt(r.x_d*r.x_d + r.y_d*r.y_d) // ft/sec
-        add_td(tr, velocity)
-        let kinetic = 0.5*velocity*velocity*mass
-        add_td(tr, kinetic)
-        let momentum = mass*velocity // in foot-pounds per second
-        add_td(tr, momentum)
-
+        for (let path of paths) {
+            fmtfn( i, (i < path.length ? path[i] : null), tr)
+        }
         table.appendChild(tr)
+        // console.log("appending row", tr, "to", table)
     }
-    return table
 }
 
 function enable_copy_btn() {
@@ -199,29 +267,17 @@ function disable_copy_btn() {
 }
 
 function copy_table() {
-    let table = document.getElementById("the-data-table")
+    let table = document.getElementById("output-table")
     if (table) {
         let range = document.createRange()
-        range.selectNode(table)
-        window.getSelection().addRange(range)
+        let sel = window.getSelection()
+        sel.removeAllRanges()
+        range.selectNodeContents(table)
+        sel.addRange(range)
         document.execCommand('copy')
     } else {
         alert("Unable to find data table")
     }
-}
-
-function install_table(path, info) {
-
-    let div = document.getElementById("myTable")
-    // Remove all children of this div
-    while (div.lastChild) {
-        div.removeChild(div.lastChild)
-    }
-
-    let table = create_table(path, info)
-    table.setAttribute('id', 'the-data-table')
-    div.appendChild(table)
-    enable_copy_btn()
 }
 
 function form_get(id) {
@@ -283,6 +339,9 @@ let FORM_DEFAULTS = {
     F: 7.5,
 }
 
+var The_RK4_Path = []
+var The_Simple_Path = []
+
 function handle_tform(e) {
     // handle the trajectory form
     try {
@@ -306,16 +365,47 @@ function handle_tform(e) {
 
         let G = new Gdrag(gravity_g, weight/gravity_g, drag)
 
-        path = simulate(niters, Y0, 0, G, dt)
+        let rk4_path = simulate_RK4(niters, Y0, 0, G, dt)
+        let simple_path = simulate_simple(niters, Y0, 0, G, dt)
+        
+        The_RK4_Path = rk4_path
+        The_Simple_Path = simple_path
 
         let layout = { xaxis: { title: "Distance (ft)" } ,
                        yaxis: { title: "Height (ft)" }
                      }
 
-        plot_xy(path, layout)
-        let info = { mass: weight/gravity_g, height: height }
-        install_table(path, info)
+        let rk4_trace = build_xy_trace(rk4_path)
+        rk4_trace.mode = "lines"
+        rk4_trace.name = "RK4"
 
+        let simple_trace = build_xy_trace(simple_path)
+        simple_trace.mode = "lines"
+        simple_trace.name = "Simple"
+
+        Plotly.newPlot('myDiv', [rk4_trace, simple_trace], layout)
+
+        let info = { mass: weight/gravity_g, height: height }
+
+        // Populate the output table
+        let div = document.getElementById('output-table-div')
+        if (div) {
+            div.style.display = ""
+        }
+        enable_copy_btn()
+
+        if (0) {
+            let table = document.getElementById('output-table')
+            if (table) {
+                remove_all_data_rows(table)
+                build_multipath_table(table, [rk4_path, simple_path], format_row)
+            } else {
+                alert("unable to find output table")
+            }
+        } else {
+            let b = new TableBuilder()
+            div.innerHTML = b.build_table(rk4_path, simple_path)
+        }
     } catch (ex) {
         alert("Error: "+ex)
         console.error(ex)
@@ -326,7 +416,7 @@ function handle_tform(e) {
 function initialize() {
     document.addEventListener("DOMContentLoaded", () => {
         let form = document.getElementById("trajectory-form")
-        console.log("form =", form)
+        // console.log("form =", form)
         if (form) {
             form.addEventListener("submit", handle_tform, false);
         } else {
@@ -334,13 +424,21 @@ function initialize() {
         }
         for (const k in FORM_DEFAULTS) {
             let field = document.getElementById(k)
-            field.value = FORM_DEFAULTS[k]
+            if (field) {
+                field.value = FORM_DEFAULTS[k]
+            } else {
+                console.warn("field named", k, "not found")
+            }
         }
         let kform = document.getElementById("drag-form")
         if (kform) {
             kform.addEventListener("submit", handle_kform, false)
         } else {
-            console.error("drag-form not found")
+            console.warn("drag-form not found")
+        }
+        let div = document.getElementById('output-table-div')
+        if (div) {
+            div.style.display = "none"
         }
     })
 }

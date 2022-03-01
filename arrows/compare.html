@@ -1,0 +1,106 @@
+<html>
+    <head>
+        <!-- Load plotly.js into the DOM -->
+        <script src='https://cdn.plot.ly/plotly-2.9.0.min.js'></script>
+        <style>
+            body {
+                margin: 40px;
+            }
+            form {
+                font-family: sans-serif;
+            }
+            label {
+                width: 150px;
+                display: inline-block;
+            }
+            input {
+                text-align: right;
+            }
+            h3 {
+                font-family: sans-serif;
+            }
+            .wrapper {
+                display: grid;
+                grid-template-columns: 400px 400px;
+            }
+            table {
+                font-family: sans-serif;
+                border-collapse: collapse;
+                border: 2px solid;
+            }
+            th {
+                border-style: solid;
+                border-color: black;
+                border-top-width: 2px;
+                border-bottom-width: 2px;
+                border-left-width: 1px;
+                border-right-width: 1px;
+
+                font-weight: normal;
+                padding: 8px 10px;
+            }
+            td {
+                text-align: right;
+                border: 1px solid black;
+                padding: 5px 5px;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div class="wrapper">
+            <div id="col1">
+                <h3>RK4 vs. Simple Simulation Comparison</h2>
+                <form id="trajectory-form" autocomplete="off">
+
+                    <label for="Drag Coeff. K">Drag Coeff:</label>
+                    <input id="drag" size="10" required pattern="\d*[.]?\d*(e-?\d+)?"> lb/ft<br>
+
+                    <label for="weight">Arrow Weight</label>
+                    <input id="weight" size="10" required pattern="\d*[.]?\d*"> grain<br>
+
+                    <label for="speed">Initial Speed</label>
+                    <input id="speed" size="10" required pattern="\d*[.]?\d*"> ft/s<br>
+
+                    <label for="height">Initial Height</label>
+                    <input id="height" size="10" required pattern="\d*[.]?\d*"> ft<br>
+
+                    <label for="angle">Initial Angle</label>
+                    <input id="angle" size="10" required pattern="-?\d*[.]?\d*"> deg<br>
+
+                    <label for="dt">Time Step</label>
+                    <input id="dt" size="10" required pattern="-?\d*[.]?\d*"> s<br>
+
+                    <label for="endtime">End Time</label>
+                    <input id="endtime" size="10" required pattern="-?\d*[.]?\d*"> s<br>
+
+                    <br><br>
+                    <input id="compute-trajectory-btn" type="submit" value="Compute Trajectory">
+                </form>
+            </div>
+            <div id="col2">
+            </div>
+        </div>
+        <div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+        <button id="copy-btn" type=button disabled style="display:none" onclick="copy_table">Copy to Clipboard</button>
+        <br><br>
+        <div id="output-table-div">
+            <table id="output-table">
+                <tr class="tbl-header">
+                    <th colspan="3">RK4</th>
+                    <th colspan="3">Simple</th>
+                </tr>
+                <tr class="tbl-header">
+                    <th>t</th>
+                    <th>x</th>
+                    <th>y</th>
+                    <th>t</th>
+                    <th>x</th>
+                    <th>y</th>
+                </tr>
+            </table>
+        </div>
+
+        <script src="compare.js"></script>
+    </body>
+</html>

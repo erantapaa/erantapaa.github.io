@@ -1,0 +1,1157 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<script type="text/javascript">
+    function goToNewPage()
+    {
+        var url = document.getElementById('list').value;
+        if(url != 'none') {
+            window.location = url;
+        }
+    }
+</script>
+<link rel='stylesheet' href='http://www.bestcrossbowsource.com/charts/tabular.css' type='text/css' media='all' />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://www.bestcrossbowsource.com/highcharts/js/themes/gray.js"></script>
+<script src="calculator-new2.js"></script>
+<meta charset="UTF-8" />
+<title>Arrow Ballistics Calculator - Kinetic Energy, Drop, Momentum</title>
+<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+<meta name="viewport" content="width=device-width" />
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="http://www.bestcrossbowsource.com/xmlrpc.php" />
+
+	<!-- This site is optimized with the Yoast SEO plugin v18.1 - https://yoast.com/wordpress/plugins/seo/ -->
+	<meta name="description" content="Up to 70 yards out of arrow ballistics information - simply provide arrow weight and speed and our calculator does the rest." />
+	<link rel="canonical" href="http://www.bestcrossbowsource.com/crossbow-arrow-ballistics-calculator/" />
+	<meta name="twitter:label1" content="Written by" />
+	<meta name="twitter:data1" content="Nathan" />
+	<meta name="twitter:label2" content="Est. reading time" />
+	<meta name="twitter:data2" content="1 minute" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"http://www.bestcrossbowsource.com/#website","url":"http://www.bestcrossbowsource.com/","name":"Best Crossbow Source","description":"For Beginners &amp; Advanced","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"http://www.bestcrossbowsource.com/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"ImageObject","@id":"http://www.bestcrossbowsource.com/crossbow-arrow-ballistics-calculator/#primaryimage","inLanguage":"en-US","url":"http://www.bestcrossbowsource.com/wp-content/uploads/2015/09/Calculator.png","contentUrl":"http://www.bestcrossbowsource.com/wp-content/uploads/2015/09/Calculator.png","width":172,"height":172},{"@type":"WebPage","@id":"http://www.bestcrossbowsource.com/crossbow-arrow-ballistics-calculator/#webpage","url":"http://www.bestcrossbowsource.com/crossbow-arrow-ballistics-calculator/","name":"Arrow Ballistics Calculator - Kinetic Energy, Drop, Momentum","isPartOf":{"@id":"http://www.bestcrossbowsource.com/#website"},"primaryImageOfPage":{"@id":"http://www.bestcrossbowsource.com/crossbow-arrow-ballistics-calculator/#primaryimage"},"datePublished":"2015-09-09T19:16:28+00:00","dateModified":"2019-01-15T16:02:22+00:00","author":{"@id":"http://www.bestcrossbowsource.com/#/schema/person/bbe1175f50bd7c12db85937984cf5e8b"},"description":"Up to 70 yards out of arrow ballistics information - simply provide arrow weight and speed and our calculator does the rest.","breadcrumb":{"@id":"http://www.bestcrossbowsource.com/crossbow-arrow-ballistics-calculator/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["http://www.bestcrossbowsource.com/crossbow-arrow-ballistics-calculator/"]}]},{"@type":"BreadcrumbList","@id":"http://www.bestcrossbowsource.com/crossbow-arrow-ballistics-calculator/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Arrow Ballistics Calculator &#8211; Kinetic Energy, Drop, Speed, Momentum"}]},{"@type":"Person","@id":"http://www.bestcrossbowsource.com/#/schema/person/bbe1175f50bd7c12db85937984cf5e8b","name":"Nathan","url":"http://www.bestcrossbowsource.com/author/mark-n/"}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Best Crossbow Source &raquo; Feed" href="http://www.bestcrossbowsource.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Best Crossbow Source &raquo; Comments Feed" href="http://www.bestcrossbowsource.com/comments/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.bestcrossbowsource.com\/wp-includes\/js\/wp-emoji-release.min.js"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<style type="text/css">
+	text-align: center.tablepress thead th div { float:left; }
+</style><style id='responsive-menu-inline-css' type='text/css'>
+/** This file is major component of this plugin so please don't try to edit here. */
+#rmp_menu_trigger-11037 {
+  width: 55px;
+  height: 55px;
+  position: fixed;
+  top: 0;
+  border-radius: 5px;
+  display: none;
+  text-decoration: none;
+  right: 5%;
+  background: #000;
+  transition: transform 0.5s, background-color 0.5s; }
+  #rmp_menu_trigger-11037:hover, #rmp_menu_trigger-11037:focus {
+    background: #000;
+    text-decoration: unset; }
+  #rmp_menu_trigger-11037.is-active {
+    background: #000; }
+  #rmp_menu_trigger-11037 .rmp-trigger-box {
+    width: 25px;
+    color: #fff; }
+  #rmp_menu_trigger-11037 .rmp-trigger-icon-active, #rmp_menu_trigger-11037 .rmp-trigger-text-open {
+    display: none; }
+  #rmp_menu_trigger-11037.is-active .rmp-trigger-icon-active, #rmp_menu_trigger-11037.is-active .rmp-trigger-text-open {
+    display: inline; }
+  #rmp_menu_trigger-11037.is-active .rmp-trigger-icon-inactive, #rmp_menu_trigger-11037.is-active .rmp-trigger-text {
+    display: none; }
+  #rmp_menu_trigger-11037 .rmp-trigger-label {
+    color: #fff;
+    pointer-events: none;
+    line-height: 13px;
+    font-family: inherit;
+    font-size: 14px;
+    display: inline;
+    text-transform: inherit; }
+    #rmp_menu_trigger-11037 .rmp-trigger-label.rmp-trigger-label-top {
+      display: block;
+      margin-bottom: 12px; }
+    #rmp_menu_trigger-11037 .rmp-trigger-label.rmp-trigger-label-bottom {
+      display: block;
+      margin-top: 12px; }
+  #rmp_menu_trigger-11037 .responsive-menu-pro-inner {
+    display: block; }
+  #rmp_menu_trigger-11037 .responsive-menu-pro-inner, #rmp_menu_trigger-11037 .responsive-menu-pro-inner::before, #rmp_menu_trigger-11037 .responsive-menu-pro-inner::after {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    border-radius: 4px;
+    position: absolute; }
+  #rmp_menu_trigger-11037.is-active .responsive-menu-pro-inner, #rmp_menu_trigger-11037.is-active .responsive-menu-pro-inner::before, #rmp_menu_trigger-11037.is-active .responsive-menu-pro-inner::after {
+    background-color: #fff; }
+  #rmp_menu_trigger-11037:hover .responsive-menu-pro-inner, #rmp_menu_trigger-11037:hover .responsive-menu-pro-inner::before, #rmp_menu_trigger-11037:hover .responsive-menu-pro-inner::after {
+    background-color: #fff; }
+
+/* Hamburger menu styling */
+@media screen and (max-width: 800px) {
+  #nav-main, #how-test {
+    display: none !important; }
+  #rmp_menu_trigger-11037 {
+    display: block; }
+  #rmp-container-11037 {
+    position: fixed;
+    top: 0;
+    margin: 0;
+    transition: transform 0.5s;
+    overflow: auto;
+    display: block;
+    width: 75%;
+    background-color: #212121;
+    background-image: url('');
+    height: 100%;
+    left: 0;
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px; }
+  #rmp-menu-wrap-11037 {
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    background-color: #212121; }
+    #rmp-menu-wrap-11037 .rmp-menu, #rmp-menu-wrap-11037 .rmp-submenu {
+      width: 100%;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0; }
+    #rmp-menu-wrap-11037 .rmp-submenu-depth-1 .rmp-menu-item-link {
+      padding-left: 10%; }
+    #rmp-menu-wrap-11037 .rmp-submenu-depth-2 .rmp-menu-item-link {
+      padding-left: 15%; }
+    #rmp-menu-wrap-11037 .rmp-submenu-depth-3 .rmp-menu-item-link {
+      padding-left: 20%; }
+    #rmp-menu-wrap-11037 .rmp-submenu-depth-4 .rmp-menu-item-link {
+      padding-left: 25%; }
+    #rmp-menu-wrap-11037 .rmp-submenu.rmp-submenu-open {
+      display: block; }
+    #rmp-menu-wrap-11037 .rmp-menu-item {
+      width: 100%;
+      list-style: none;
+      margin: 0; }
+    #rmp-menu-wrap-11037 .rmp-menu-item-link {
+      height: 40px;
+      line-height: 40px;
+      font-size: 13px;
+      border-bottom: 1px solid #212121;
+      font-family: inherit;
+      color: #fff;
+      text-align: left;
+      background-color: #212121;
+      font-weight: normal;
+      letter-spacing: 0px;
+      display: block;
+      width: 100%;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      transition: background-color 0.5s, border-color 0.5s, 0.5s;
+      padding: 0 5%;
+      padding-right: 50px; }
+      #rmp-menu-wrap-11037 .rmp-menu-item-link:after, #rmp-menu-wrap-11037 .rmp-menu-item-link:before {
+        display: none; }
+      #rmp-menu-wrap-11037 .rmp-menu-item-link:hover {
+        color: #fff;
+        border-color: #212121;
+        background-color: #3f3f3f; }
+      #rmp-menu-wrap-11037 .rmp-menu-item-link:focus {
+        outline: none;
+        border-color: unset;
+        box-shadow: unset; }
+      #rmp-menu-wrap-11037 .rmp-menu-item-link .rmp-font-icon {
+        height: 40px;
+        line-height: 40px;
+        margin-right: 10px;
+        font-size: 13px; }
+    #rmp-menu-wrap-11037 .rmp-menu-current-item .rmp-menu-item-link {
+      color: #fff;
+      border-color: #212121;
+      background-color: #212121; }
+      #rmp-menu-wrap-11037 .rmp-menu-current-item .rmp-menu-item-link:hover {
+        color: #fff;
+        border-color: #3f3f3f;
+        background-color: #3f3f3f; }
+    #rmp-menu-wrap-11037 .rmp-menu-subarrow {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      text-align: center;
+      overflow: hidden;
+      background-size: cover;
+      overflow: hidden;
+      right: 0;
+      border-left-style: solid;
+      border-left-color: #212121;
+      border-left-width: 1px;
+      height: 40px;
+      width: 40px;
+      color: #fff;
+      background-color: #212121; }
+      #rmp-menu-wrap-11037 .rmp-menu-subarrow:hover {
+        color: #fff;
+        border-color: #3f3f3f;
+        background-color: #3f3f3f; }
+      #rmp-menu-wrap-11037 .rmp-menu-subarrow .rmp-font-icon {
+        margin-right: unset; }
+      #rmp-menu-wrap-11037 .rmp-menu-subarrow * {
+        vertical-align: middle;
+        line-height: 40px; }
+    #rmp-menu-wrap-11037 .rmp-menu-subarrow-active {
+      display: block;
+      background-size: cover;
+      color: #fff;
+      border-color: #212121;
+      background-color: #212121; }
+      #rmp-menu-wrap-11037 .rmp-menu-subarrow-active:hover {
+        color: #fff;
+        border-color: #3f3f3f;
+        background-color: #3f3f3f; }
+    #rmp-menu-wrap-11037 .rmp-submenu {
+      display: none; }
+      #rmp-menu-wrap-11037 .rmp-submenu .rmp-menu-item-link {
+        height: 40px;
+        line-height: 40px;
+        letter-spacing: 0px;
+        font-size: 13px;
+        border-bottom: 1px solid #212121;
+        font-family: inherit;
+        color: #fff;
+        text-align: left;
+        background-color: #212121; }
+        #rmp-menu-wrap-11037 .rmp-submenu .rmp-menu-item-link:hover {
+          color: #fff;
+          border-color: #212121;
+          background-color: #3f3f3f; }
+      #rmp-menu-wrap-11037 .rmp-submenu .rmp-menu-current-item .rmp-menu-item-link {
+        color: #fff;
+        border-color: #212121;
+        background-color: #212121; }
+        #rmp-menu-wrap-11037 .rmp-submenu .rmp-menu-current-item .rmp-menu-item-link:hover {
+          color: #fff;
+          border-color: #3f3f3f;
+          background-color: #3f3f3f; }
+      #rmp-menu-wrap-11037 .rmp-submenu .rmp-menu-subarrow {
+        right: 0;
+        border-right: unset;
+        border-left-style: solid;
+        border-left-color: #212121;
+        border-left-width: 1px;
+        height: 40px;
+        line-height: 40px;
+        width: 40px;
+        color: #fff;
+        background-color: #212121; }
+        #rmp-menu-wrap-11037 .rmp-submenu .rmp-menu-subarrow:hover {
+          color: #fff;
+          border-color: #3f3f3f;
+          background-color: #3f3f3f; }
+      #rmp-menu-wrap-11037 .rmp-submenu .rmp-menu-subarrow-active {
+        color: #fff;
+        border-color: #212121;
+        background-color: #212121; }
+        #rmp-menu-wrap-11037 .rmp-submenu .rmp-menu-subarrow-active:hover {
+          color: #fff;
+          border-color: #3f3f3f;
+          background-color: #3f3f3f; }
+    #rmp-menu-wrap-11037 .rmp-menu-item-description {
+      margin: 0;
+      padding: 5px 5%;
+      opacity: 0.8;
+      color: #fff; }
+  #rmp-search-box-11037 {
+    display: block;
+    padding-top: 0px;
+    padding-left: 5%;
+    padding-bottom: 0px;
+    padding-right: 5%; }
+    #rmp-search-box-11037 .rmp-search-form {
+      margin: 0; }
+    #rmp-search-box-11037 .rmp-search-box {
+      background: #fff;
+      border: 1px solid #dadada;
+      color: #333;
+      width: 100%;
+      padding: 0 5%;
+      border-radius: 30px;
+      height: 45px;
+      -webkit-appearance: none; }
+      #rmp-search-box-11037 .rmp-search-box::placeholder {
+        color: #C7C7CD; }
+      #rmp-search-box-11037 .rmp-search-box:focus {
+        background-color: #fff;
+        outline: 2px solid #dadada;
+        color: #333;
+        /** Menu Title Style */ }
+  #rmp-menu-title-11037 {
+    background-color: #212121;
+    color: #fff;
+    text-align: left;
+    font-size: 15px;
+    padding-top: 10%;
+    padding-left: 5%;
+    padding-bottom: 0%;
+    padding-right: 5%;
+    font-weight: 400;
+    transition: background-color 0.5s, border-color 0.5s, color 0.5s; }
+    #rmp-menu-title-11037:hover {
+      background-color: #212121;
+      color: #fff; }
+    #rmp-menu-title-11037 > a {
+      color: #fff;
+      width: 100%;
+      background-color: unset;
+      text-decoration: none; }
+      #rmp-menu-title-11037 > a:hover {
+        color: #fff; }
+    #rmp-menu-title-11037 .rmp-font-icon {
+      font-size: 15px; }
+    #rmp-menu-title-11037 .rmp-menu-title-image {
+      /** Menu Additional Content Style */ }
+  #rmp-menu-additional-content-11037 {
+    padding-top: 0px;
+    padding-left: 5%;
+    padding-bottom: 0px;
+    padding-right: 5%;
+    color: #fff;
+    text-align: center;
+    font-size: 16px; } }
+/**
+ This file contents common styling of menus.
+ */
+.rmp-container {
+  display: none;
+  visibility: visible;
+  padding: 0px 0px 0px 0px;
+  z-index: 99998;
+  transition: all 0.3s; }
+  .rmp-container.rmp-fade-top, .rmp-container.rmp-fade-left, .rmp-container.rmp-fade-right, .rmp-container.rmp-fade-bottom {
+    display: none; }
+  .rmp-container.rmp-slide-left, .rmp-container.rmp-push-left {
+    transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    -moz-transform: translateX(-100%); }
+  .rmp-container.rmp-slide-left.rmp-menu-open, .rmp-container.rmp-push-left.rmp-menu-open {
+    transform: translateX(0);
+    -ms-transform: translateX(0);
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0); }
+  .rmp-container.rmp-slide-right, .rmp-container.rmp-push-right {
+    transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%); }
+  .rmp-container.rmp-slide-right.rmp-menu-open, .rmp-container.rmp-push-right.rmp-menu-open {
+    transform: translateX(0);
+    -ms-transform: translateX(0);
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0); }
+  .rmp-container.rmp-slide-top, .rmp-container.rmp-push-top {
+    transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);
+    -moz-transform: translateY(-100%); }
+  .rmp-container.rmp-slide-top.rmp-menu-open, .rmp-container.rmp-push-top.rmp-menu-open {
+    transform: translateY(0);
+    -ms-transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0); }
+  .rmp-container.rmp-slide-bottom, .rmp-container.rmp-push-bottom {
+    transform: translateY(100%);
+    -ms-transform: translateY(100%);
+    -webkit-transform: translateY(100%);
+    -moz-transform: translateY(100%); }
+  .rmp-container.rmp-slide-bottom.rmp-menu-open, .rmp-container.rmp-push-bottom.rmp-menu-open {
+    transform: translateX(0);
+    -ms-transform: translateX(0);
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    /** Scrolling bar in menu setting box **/ }
+  .rmp-container::-webkit-scrollbar {
+    width: 0px; }
+  .rmp-container ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px transparent; }
+  .rmp-container ::-webkit-scrollbar-thumb {
+    background: transparent; }
+  .rmp-container ::-webkit-scrollbar-thumb:hover {
+    background: transparent; }
+  .rmp-container .rmp-menu-wrap .rmp-menu {
+    transition: none;
+    border-radius: 0;
+    box-shadow: none;
+    background: none;
+    border: 0;
+    bottom: auto;
+    box-sizing: border-box;
+    clip: auto;
+    color: #666;
+    display: block;
+    float: none;
+    font-family: inherit;
+    font-size: 14px;
+    height: auto;
+    left: auto;
+    line-height: 1.7;
+    list-style-type: none;
+    margin: 0;
+    min-height: auto;
+    max-height: none;
+    opacity: 1;
+    outline: none;
+    overflow: visible;
+    padding: 0;
+    position: relative;
+    pointer-events: auto;
+    right: auto;
+    text-align: left;
+    text-decoration: none;
+    text-indent: 0;
+    text-transform: none;
+    transform: none;
+    top: auto;
+    visibility: inherit;
+    width: auto;
+    word-wrap: break-word;
+    white-space: normal; }
+  .rmp-container .rmp-menu-additional-content {
+    display: block;
+    word-break: break-word; }
+  .rmp-container .rmp-menu-title {
+    display: flex;
+    flex-direction: column; }
+    .rmp-container .rmp-menu-title .rmp-menu-title-image {
+      max-width: 100%;
+      margin-bottom: 15px;
+      display: block;
+      margin: auto;
+      margin-bottom: 15px; }
+
+button.rmp_menu_trigger {
+  z-index: 999999;
+  overflow: hidden;
+  outline: none;
+  border: 0;
+  display: none;
+  margin: 0;
+  transition: transform 0.5s, background-color 0.5s;
+  padding: 0; }
+  button.rmp_menu_trigger .responsive-menu-pro-inner::before, button.rmp_menu_trigger .responsive-menu-pro-inner::after {
+    content: "";
+    display: block; }
+  button.rmp_menu_trigger .responsive-menu-pro-inner::before {
+    top: 10px; }
+  button.rmp_menu_trigger .responsive-menu-pro-inner::after {
+    bottom: 10px; }
+  button.rmp_menu_trigger .rmp-trigger-box {
+    width: 40px;
+    display: inline-block;
+    position: relative;
+    pointer-events: none;
+    vertical-align: super; }
+
+/*  Menu Trigger Boring Animation */
+.rmp-menu-trigger-boring .responsive-menu-pro-inner {
+  transition-property: none; }
+  .rmp-menu-trigger-boring .responsive-menu-pro-inner::after, .rmp-menu-trigger-boring .responsive-menu-pro-inner::before {
+    transition-property: none; }
+.rmp-menu-trigger-boring.is-active .responsive-menu-pro-inner {
+  transform: rotate(45deg); }
+  .rmp-menu-trigger-boring.is-active .responsive-menu-pro-inner:before {
+    top: 0;
+    opacity: 0; }
+  .rmp-menu-trigger-boring.is-active .responsive-menu-pro-inner:after {
+    bottom: 0;
+    transform: rotate(-90deg); }
+
+</style>
+<link rel='stylesheet' id='css-0-css'  href='http://www.bestcrossbowsource.com/wp-content/mmr/423045e1-1637826902.min.css' type='text/css' media='all' />
+
+<link rel='stylesheet' id='css-1-css'  href='http://www.bestcrossbowsource.com/wp-content/mmr/73363815-1637826893.min.css' type='text/css' media='all' />
+<link rel="icon" href="http://www.bestcrossbowsource.com/wp-content/uploads/2014/09/favicon.ico" type="image/x-icon" />
+<script type='text/javascript' id='js-2-js-extra'>
+/* <![CDATA[ */
+var rmp_menu = {"ajaxURL":"http:\/\/www.bestcrossbowsource.com\/wp-admin\/admin-ajax.php","wp_nonce":"71e62a17e8","menu":[{"menu_theme":null,"theme_type":"default","theme_location_menu":"","submenu_submenu_arrow_width":"40","submenu_submenu_arrow_width_unit":"px","submenu_submenu_arrow_height":"40","submenu_submenu_arrow_height_unit":"px","submenu_arrow_position":"right","submenu_sub_arrow_background_colour":"#212121","submenu_sub_arrow_background_hover_colour":"#3f3f3f","submenu_sub_arrow_background_colour_active":"#212121","submenu_sub_arrow_background_hover_colour_active":"#3f3f3f","submenu_sub_arrow_border_width":"1","submenu_sub_arrow_border_width_unit":"px","submenu_sub_arrow_border_colour":"#212121","submenu_sub_arrow_border_hover_colour":"#3f3f3f","submenu_sub_arrow_border_colour_active":"#212121","submenu_sub_arrow_border_hover_colour_active":"#3f3f3f","submenu_sub_arrow_shape_colour":"#fff","submenu_sub_arrow_shape_hover_colour":"#fff","submenu_sub_arrow_shape_colour_active":"#fff","submenu_sub_arrow_shape_hover_colour_active":"#fff","use_header_bar":"off","header_bar_items_order":"{\"logo\":\"on\",\"title\":\"on\",\"search\":\"on\",\"html content\":\"on\"}","header_bar_title":"","header_bar_html_content":"","header_bar_logo":"","header_bar_logo_link":"","header_bar_logo_width":null,"header_bar_logo_width_unit":"%","header_bar_logo_height":null,"header_bar_logo_height_unit":"%","header_bar_height":"80","header_bar_height_unit":"px","header_bar_padding":{"top":"0px","right":"5%","bottom":"0px","left":"5%"},"header_bar_font":"","header_bar_font_size":"14","header_bar_font_size_unit":"px","header_bar_text_color":"#ffffff","header_bar_background_color":"#ffffff","header_bar_breakpoint":"800","header_bar_position_type":"fixed","header_bar_adjust_page":null,"header_bar_scroll_enable":"off","header_bar_scroll_background_color":"#36bdf6","mobile_breakpoint":"600","tablet_breakpoint":"800","transition_speed":"0.5","sub_menu_speed":"0.2","show_menu_on_page_load":"","menu_disable_scrolling":"off","menu_overlay":"off","menu_overlay_colour":"rgba(0,0,0,0.7)","desktop_menu_width":"","desktop_menu_width_unit":"px","desktop_menu_positioning":"fixed","desktop_menu_side":"","desktop_menu_to_hide":"","use_current_theme_location":"off","mega_menu":{"225":"off","227":"off","229":"off","228":"off","226":"off"},"desktop_submenu_open_animation":"","desktop_submenu_open_animation_speed":"0ms","desktop_submenu_open_on_click":"","desktop_menu_hide_and_show":"","menu_name":"Default Menu","menu_to_use":"main-menu","different_menu_for_mobile":"off","menu_to_use_in_mobile":"main-menu","use_mobile_menu":"on","use_tablet_menu":"on","use_desktop_menu":null,"menu_display_on":"all-pages","menu_to_hide":"#nav-main, #how-test","submenu_descriptions_on":"","custom_walker":"","menu_background_colour":"#212121","menu_depth":"5","smooth_scroll_on":"off","smooth_scroll_speed":"500","menu_font_icons":[],"menu_links_height":"40","menu_links_height_unit":"px","menu_links_line_height":"40","menu_links_line_height_unit":"px","menu_depth_0":"5","menu_depth_0_unit":"%","menu_font_size":"13","menu_font_size_unit":"px","menu_font":"","menu_font_weight":"normal","menu_text_alignment":"left","menu_text_letter_spacing":"","menu_word_wrap":"off","menu_link_colour":"#fff","menu_link_hover_colour":"#fff","menu_current_link_colour":"#fff","menu_current_link_hover_colour":"#fff","menu_item_background_colour":"#212121","menu_item_background_hover_colour":"#3f3f3f","menu_current_item_background_colour":"#212121","menu_current_item_background_hover_colour":"#3f3f3f","menu_border_width":"1","menu_border_width_unit":"px","menu_item_border_colour":"#212121","menu_item_border_colour_hover":"#212121","menu_current_item_border_colour":"#212121","menu_current_item_border_hover_colour":"#3f3f3f","submenu_links_height":"40","submenu_links_height_unit":"px","submenu_links_line_height":"40","submenu_links_line_height_unit":"px","menu_depth_side":"left","menu_depth_1":"10","menu_depth_1_unit":"%","menu_depth_2":"15","menu_depth_2_unit":"%","menu_depth_3":"20","menu_depth_3_unit":"%","menu_depth_4":"25","menu_depth_4_unit":"%","submenu_item_background_colour":"#212121","submenu_item_background_hover_colour":"#3f3f3f","submenu_current_item_background_colour":"#212121","submenu_current_item_background_hover_colour":"#3f3f3f","submenu_border_width":"1","submenu_border_width_unit":"px","submenu_item_border_colour":"#212121","submenu_item_border_colour_hover":"#212121","submenu_current_item_border_colour":"#212121","submenu_current_item_border_hover_colour":"#3f3f3f","submenu_font_size":"13","submenu_font_size_unit":"px","submenu_font":"","submenu_font_weight":"normal","submenu_text_letter_spacing":"","submenu_text_alignment":"left","submenu_link_colour":"#fff","submenu_link_hover_colour":"#fff","submenu_current_link_colour":"#fff","submenu_current_link_hover_colour":"#fff","inactive_arrow_shape":"\u25bc","active_arrow_shape":"\u25b2","inactive_arrow_font_icon":"","active_arrow_font_icon":"","inactive_arrow_image":"","active_arrow_image":"","submenu_arrow_width":"40","submenu_arrow_width_unit":"px","submenu_arrow_height":"40","submenu_arrow_height_unit":"px","arrow_position":"right","menu_sub_arrow_shape_colour":"#fff","menu_sub_arrow_shape_hover_colour":"#fff","menu_sub_arrow_shape_colour_active":"#fff","menu_sub_arrow_shape_hover_colour_active":"#fff","menu_sub_arrow_border_width":"1","menu_sub_arrow_border_width_unit":"px","menu_sub_arrow_border_colour":"#212121","menu_sub_arrow_border_hover_colour":"#3f3f3f","menu_sub_arrow_border_colour_active":"#212121","menu_sub_arrow_border_hover_colour_active":"#3f3f3f","menu_sub_arrow_background_colour":"#212121","menu_sub_arrow_background_hover_colour":"#3f3f3f","menu_sub_arrow_background_colour_active":"#212121","menu_sub_arrow_background_hover_colour_active":"#3f3f3f","fade_submenus":"off","fade_submenus_side":"left","fade_submenus_delay":"100","fade_submenus_speed":"500","use_slide_effect":"off","slide_effect_back_to_text":"Back","accordion_animation":"off","auto_expand_all_submenus":"off","auto_expand_current_submenus":"off","menu_item_click_to_trigger_submenu":"off","button_width":"55","button_width_unit":"px","button_height":"55","button_height_unit":"px","button_background_colour":"#000","button_background_colour_hover":"#000","button_background_colour_active":"#000","toggle_button_border_radius":"5","button_transparent_background":"off","button_left_or_right":"right","button_position_type":"fixed","button_distance_from_side":"5","button_distance_from_side_unit":"%","button_top":"0","button_top_unit":"px","button_push_with_animation":"off","button_click_animation":"boring","button_line_margin":"5","button_line_margin_unit":"px","button_line_width":"25","button_line_width_unit":"px","button_line_height":"3","button_line_height_unit":"px","button_line_colour":"#fff","button_line_colour_hover":"#fff","button_line_colour_active":"#fff","button_font_icon":"","button_font_icon_when_clicked":"","button_image":"","button_image_when_clicked":"","button_title":"","button_title_open":null,"button_title_position":"left","button_font":"","button_font_size":"14","button_font_size_unit":"px","button_title_line_height":"13","button_title_line_height_unit":"px","button_text_colour":"#fff","button_trigger_type_click":"on","button_trigger_type_hover":"off","button_click_trigger":"#responsive-menu-button","items_order":{"title":"on","menu":"on","search":"on","additional content":"on"},"menu_title":"","menu_title_link":"","menu_title_link_location":"_self","menu_title_image":"","menu_title_font_icon":"","menu_title_section_padding":{"top":"10%","right":"5%","bottom":"0%","left":"5%"},"menu_title_background_colour":"#212121","menu_title_background_hover_colour":"#212121","menu_title_font_size":"15","menu_title_font_size_unit":"px","menu_title_alignment":"left","menu_title_font_weight":"400","menu_title_font_family":"","menu_title_colour":"#fff","menu_title_hover_colour":"#fff","menu_title_image_width":null,"menu_title_image_width_unit":"%","menu_title_image_height":null,"menu_title_image_height_unit":"px","menu_additional_content":"","menu_additional_section_padding":{"left":"5%","top":"0px","right":"5%","bottom":"0px"},"menu_additional_content_font_size":"16","menu_additional_content_font_size_unit":"px","menu_additional_content_alignment":"center","menu_additional_content_colour":"#fff","menu_search_box_text":"Search","menu_search_section_padding":{"left":"5%","top":"0px","right":"5%","bottom":"0px"},"menu_search_box_height":"45","menu_search_box_height_unit":"px","menu_search_box_border_radius":"30","menu_search_box_text_colour":"#333","menu_search_box_background_colour":"#fff","menu_search_box_placeholder_colour":"#C7C7CD","menu_search_box_border_colour":"#dadada","menu_section_padding":{"top":"0px","right":"0px","bottom":"0px","left":"0px"},"menu_width":"75","menu_width_unit":"%","menu_maximum_width":"","menu_maximum_width_unit":"px","menu_minimum_width":"","menu_minimum_width_unit":"px","menu_auto_height":"off","menu_container_padding":{"top":"0px","right":"0px","bottom":"0px","left":"0px"},"menu_container_background_colour":"#212121","menu_background_image":"","animation_type":"slide","menu_appear_from":"left","animation_speed":"0.5","page_wrapper":"","menu_close_on_body_click":"off","menu_close_on_scroll":"off","menu_close_on_link_click":"off","enable_touch_gestures":"","breakpoint":"800","button_image_alt":"","button_image_alt_when_clicked":"","active_arrow_image_alt":"","inactive_arrow_image_alt":"","menu_title_image_alt":"","button_trigger_type":"click","minify_scripts":"off","scripts_in_footer":"off","external_files":"off","shortcode":"off","mobile_only":"off","custom_css":"","single_menu_height":"80","single_menu_height_unit":"px","single_menu_font":"","single_menu_font_size":"14","single_menu_font_size_unit":"px","single_menu_submenu_height":"40","single_menu_submenu_height_unit":"px","single_menu_submenu_font":"","single_menu_submenu_font_size":"12","single_menu_submenu_font_size_unit":"px","single_menu_item_link_colour":"#ffffff","single_menu_item_link_colour_hover":"#ffffff","single_menu_item_background_colour":"#ffffff","single_menu_item_background_colour_hover":"#ffffff","single_menu_item_submenu_link_colour":"#ffffff","single_menu_item_submenu_link_colour_hover":"#ffffff","single_menu_item_submenu_background_colour":"#ffffff","single_menu_item_submenu_background_colour_hover":"#ffffff","header_bar_logo_alt":"","menu_depth_5":"30","menu_depth_5_unit":"%","button_font_icon_type":"font-awesome","button_font_icon_when_clicked_type":"font-awesome","active_arrow_font_icon_type":"font-awesome","inactive_arrow_font_icon_type":"font-awesome","menu_adjust_for_wp_admin_bar":"off","menu_title_font_icon_type":"font-awesome","keyboard_shortcut_close_menu":"27,37","keyboard_shortcut_open_menu":"32,39","remove_fontawesome":"","remove_bootstrap":"","desktop_menu_options":"{}","admin_theme":"light","single_menu_line_height":"80","single_menu_line_height_unit":"px","single_menu_submenu_line_height":"40","single_menu_submenu_line_height_unit":"px","hide_on_mobile":"off","hide_on_desktop":"off","excluded_pages":null,"menu_title_padding":{"left":"5%","top":"0px","right":"5%","bottom":"0px"},"menu_id":11037,"active_toggle_contents":"\u25b2","inactive_toggle_contents":"\u25bc"}]};var aamLocal = {"nonce":"77bbb2cb24","ajaxurl":"http:\/\/www.bestcrossbowsource.com\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://www.bestcrossbowsource.com/wp-content/mmr/bf4a2cca-1644561303.min.js' id='js-2-js'></script>
+<link rel="https://api.w.org/" href="http://www.bestcrossbowsource.com/wp-json/" /><link rel="alternate" type="application/json" href="http://www.bestcrossbowsource.com/wp-json/wp/v2/posts/4741" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.bestcrossbowsource.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.bestcrossbowsource.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.8.3" />
+<link rel='shortlink' href='http://www.bestcrossbowsource.com/?p=4741' />
+<link rel="alternate" type="application/json+oembed" href="http://www.bestcrossbowsource.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.bestcrossbowsource.com%2Fcrossbow-arrow-ballistics-calculator" />
+<link rel="alternate" type="text/xml+oembed" href="http://www.bestcrossbowsource.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.bestcrossbowsource.com%2Fcrossbow-arrow-ballistics-calculator&#038;format=xml" />
+<script type="text/javascript">var ajaxurl = "http://www.bestcrossbowsource.com/wp-admin/admin-ajax.php";</script>
+
+<!-- Facebook Like Thumbnail -->
+<link rel="image_src" href="http://www.bestcrossbowsource.com/wp-content/uploads/2015/09/Calculator.png" />
+<!-- End Facebook Like Thumbnail -->
+
+<style type="text/css">
+.taxonomy-drilldown-lists p,
+.taxonomy-drilldown-checkboxes p,
+.taxonomy-drilldown-dropdowns p {
+	margin-top: 1em;
+}
+
+.taxonomy-drilldown-checkboxes li,
+.taxonomy-drilldown-dropdowns li {
+	list-style: none;
+}
+
+.taxonomy-drilldown-dropdowns select {
+	display: block;
+}
+</style>
+
+<meta property="Frontier Theme" content="1.1.9" />
+<style type="text/css" media="screen">
+	#container 	{width: 1059px;}
+	#header 	{min-height: 90px;}
+	#content 	{width: 79%;}
+	#sidebar-left 	{width: 21%;}
+	#sidebar-right 	{width: 21%;}
+</style>
+
+<style type="text/css" media="screen">
+	.page-template-page-cs-php #content, .page-template-page-sc-php #content {width: 79%;}
+	.page-template-page-cs-php #sidebar-left, .page-template-page-sc-php #sidebar-left,
+	.page-template-page-cs-php #sidebar-right, .page-template-page-sc-php #sidebar-right {width: 21%;}
+	.page-template-page-scs-php #content {width: 50%;}
+	.page-template-page-scs-php #sidebar-left {width: 25%;}
+	.page-template-page-scs-php #sidebar-right {width: 25%;}
+</style>
+
+<style type="text/css" media="screen">
+	#header {background-color:#383838;}
+	#nav-main {background-color:#dda54f;}
+	#nav-main .nav-main {border-left: 1px solid #b57d27; border-right: 1px solid #fbc36d;}
+	#nav-main .nav-main > li, #nav-main .nav-main > ul > .page_item {border-left: 1px solid #fbc36d; border-right: 1px solid #b57d27;}
+	#top-bar {background-color:#222222;}
+	#bottom-bar {background-color:#afafaf;}
+	.blog-view, .comment-author-admin > .comment-body, .bypostauthor > .comment-body {border-top: 6px solid #ddad63;}
+	.page-nav > *, .comment-nav > *, .author-info .title, .comment-reply-link, .widget-title,
+	.widget_search .search-submit, .widget_calendar caption {background-color:#ddad63;}
+	.genericon {color:#ddad63;}
+	a {color:#0E4D7A;}
+	a:hover {color:#0000EE;}
+</style>
+
+<script type="text/javascript">/* FooTable init code */
+
+var $FOOTABLE = $FOOTABLE || {};
+(function( $FOOTABLE, $, undefined ) {
+
+	jQuery.fn.attrAppendWithComma=function(a,b){var c;return this.each(function(){c=$(this),void 0!==c.attr(a)&&""!=c.attr(a)?c.attr(a,c.attr(a)+","+b):c.attr(a,b)})};jQuery.fn.footableAttr=function(a,b){return this.each(function(){var c=$(this);c.data("auto-columns")!==!1&&(c.find("thead th:gt("+a+")").attrAppendWithComma("data-hide","tablet"),c.find("thead th:gt("+b+")").attrAppendWithComma("data-hide","phone"))})},jQuery.fn.footableFilter=function(a){return this.each(function(){var b=$(this);b.data("filter")||b.data("filter")===!1||b.data("filter-text-only","true").before('<div class="footable-filter-container"><input placeholder="'+a+'" style="float:right" type="text" class="footable-filter" /></div>')})},jQuery.fn.footablePager=function(){return this.each(function(){var a=$(this);if(a.data("page")!==!1){var b=$('<tfoot class="hide-if-no-paging"><tr><td><div class="pagination pagination-centered"></div></td></tr></tfoot>');b.find("td").attr("colspan",a.find("thead th").length),a.find("tbody:last").after(b)}})};
+
+	$FOOTABLE.init = function() {
+		$(".footable, .tablepress")
+			.footableAttr(5,1)
+			.footable( { breakpoints: { phone: 480, tablet: 768 } });
+
+	};
+}( $FOOTABLE, jQuery ));
+
+jQuery(function($) {
+	$FOOTABLE.init();
+});
+</script><style type="text/css" id="custom-background-css">
+body.custom-background { background-image: url("http://www.bestcrossbowsource.com/wp-content/themes/frontier/images/honeycomb.png"); background-position: left top; background-size: auto; background-repeat: repeat; background-attachment: scroll; }
+</style>
+	
+<!-- Custom CSS -->
+<style type="text/css" media="screen">
+ul.map li { float: left; margin: 0 25px 0 0px; width: 120px; border: 0px solid; height: 45px; padding-left: 6px; } ul.map { list-style: square url(http://createaclickablemap.com/li-arrow.png) !important; } ul.map li a{ margin: 0;padding: 0; text-decoration:underline; font-family:Arial, Helvetica, sans-serif; font-size:12px; font-weight:normal; color:#4591b1; } ul.map li a:hover{ text-decoration:none; color:#214b6e;} .linkBack{ display:block; width:130px; position: relative; bottom: 0px; left: 660px; font-family: Arial,Helvetica,sans-serif; font-size: 10px; font-style:italic; color:#666666;} .linkBack a {color:#666666;}.linkBack a:hover{color:#666666;text-decoration: none;}
+
+.styled-button-1 {
+	-webkit-box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
+	-moz-box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
+	box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
+	color:#333;
+	background-color:#DDA54F;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border:none;
+	font-family:'Helvetica Neue',Arial,sans-serif;
+	font-size:13px;
+	font-weight:600;
+	height:32px;
+	border: 1px solid black;
+	padding:4px 6px;
+	margin-bot: 5px;	
+	text-shadow:#FE6 0 1px 0
+}
+
+.styled-button-1:hover {
+
+background-color: #C38931;
+}
+img.neoborder {border: 1px solid #000; margin: 5px 12px;}
+img.smallborder {border: 1px solid #000;}
+
+#header {min-height: 0px !important;}
+
+@media screen and (max-width: 800px) { .sidebar { display: none !important; } }
+
+.item_name {    font-size: 1.3em;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-top: 15px;}
+.item_name a{color: blue !important;}
+.right_colm {width: 20%; 
+float:right;
+padding-top: 15px;}
+</style>
+<!-- Custom CSS End -->
+
+</head>
+
+<body class="post-template-default single single-post postid-4741 single-format-standard custom-background">
+	
+	
+<div id="container" class="cf">
+	
+	
+			<div id="header" class="cf">
+			
+							<div id="header-logo">
+					<a href="http://www.bestcrossbowsource.com/"><img src="http://www.bestcrossbowsource.com/wp-content/uploads/2015/10/bcsheaderlogo.jpg" alt="" /></a>
+				</div>
+			
+			
+					</div>
+	
+			<nav id="nav-main" class="cf">
+			
+			<ul id="menu-main-menu" class="nav-main"><li id="menu-item-1595" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1595"><a href="http://www.bestcrossbowsource.com">Best Crossbow</a></li>
+<li id="menu-item-1581" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1581"><a href="#">Rankings</a>
+<ul class="sub-menu">
+	<li id="menu-item-1583" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1583"><a href="http://www.bestcrossbowsource.com/by-manufacturer/">Best by brand</a></li>
+	<li id="menu-item-6545" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6545"><a href="http://www.bestcrossbowsource.com/best-cheapinexpensive-crossbows-in-2015/">Best Budget Crossbows</a></li>
+	<li id="menu-item-7091" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7091"><a href="http://www.bestcrossbowsource.com/best-compound-crossbows-for-the-money-in-2016/">Best Compounds</a></li>
+	<li id="menu-item-6317" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6317"><a href="http://www.bestcrossbowsource.com/best-reverse-crossbows-rankings-reviews-in-2015/">Best Reverse Crossbows</a></li>
+	<li id="menu-item-6565" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6565"><a href="http://www.bestcrossbowsource.com/best-recurve-crossbows-for-the-money-in-2019/">Best Recurve Crossbows</a></li>
+	<li id="menu-item-6196" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6196"><a href="http://www.bestcrossbowsource.com/the-fastest-crossbows-of-2015-rankings-recommendations/">Fastest Crossbows</a></li>
+	<li id="menu-item-2934" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2934"><a href="http://www.bestcrossbowsource.com/best-mini-crossbows-top-picks-buying-guide/">Best Mini Crossbows</a></li>
+</ul>
+</li>
+<li id="menu-item-8034" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8034"><a href="http://www.bestcrossbowsource.com/category/crossbow-blog/">Blog</a></li>
+<li id="menu-item-1587" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1587"><a href="http://www.bestcrossbowsource.com/reviews-by-brand/">Reviews</a></li>
+<li id="menu-item-6255" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-6255"><a href="#">Accessories</a>
+<ul class="sub-menu">
+	<li id="menu-item-6256" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6256"><a href="http://www.bestcrossbowsource.com/best-crossbow-scopes-reviews-ratings-2015/">Best Scopes</a></li>
+	<li id="menu-item-6261" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6261"><a href="http://www.bestcrossbowsource.com/best-crossbow-cases-reviews-ratings/">Best Carry Case</a></li>
+	<li id="menu-item-6278" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6278"><a href="http://www.bestcrossbowsource.com/best-crossbow-slings-selection-guide-recommendations/">Best Slings</a></li>
+	<li id="menu-item-6257" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6257"><a href="http://www.bestcrossbowsource.com/best-crossbow-broadheads/">Best Broadheads</a></li>
+	<li id="menu-item-6301" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6301"><a href="http://www.bestcrossbowsource.com/best-deer-attractants-scents-calls-decoys-guide/">Best Deer Attractants</a></li>
+</ul>
+</li>
+<li id="menu-item-1596" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1596"><a href="http://www.bestcrossbowsource.com/guides-articles/">Crossbow Academy</a></li>
+<li id="menu-item-1594" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1594"><a href="http://www.bestcrossbowsource.com/crossbow-hunting-regulations-by-state/">Regulations</a></li>
+<li id="menu-item-1597" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1597"><a href="#">About</a>
+<ul class="sub-menu">
+	<li id="menu-item-4858" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4858"><a href="http://www.bestcrossbowsource.com/how-we-test/">How We Test</a></li>
+	<li id="menu-item-5357" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5357"><a href="http://www.bestcrossbowsource.com/authors/">The Authors</a></li>
+	<li id="menu-item-1598" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1598"><a href="http://www.bestcrossbowsource.com/about-us/">About This Site</a></li>
+	<li id="menu-item-1599" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1599"><a href="http://www.bestcrossbowsource.com/contact/">Contact</a></li>
+	<li id="menu-item-1600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1600"><a href="http://www.bestcrossbowsource.com/privacy">Privacy Policy</a></li>
+</ul>
+</li>
+</ul>
+					</nav>
+	
+	
+<div id="main" class="col-cs cf">
+
+<div id="content" class="cf">
+	
+	
+	
+	
+	<!-- Start the Loop -->
+	
+						
+<article id="post-4741" class="single-view post-4741 post type-post status-publish format-standard has-post-thumbnail hentry category-crossbow-blog">
+
+
+<header class="entry-header cf">
+		<h1 class="entry-title"><a href="http://www.bestcrossbowsource.com/crossbow-arrow-ballistics-calculator">Arrow Ballistics Calculator &#8211; Kinetic Energy, Drop, Speed, Momentum</a></h1>
+	</header>
+
+<div class="entry-byline cf">
+	
+	
+	
+	
+	
+	
+	</div>
+
+<div class="entry-content cf">
+	
+	
+	<div class="bottomcontainerBox" style="background-color:transparent;">
+			<div style="float:left; width:99px;padding-right:10px; margin:4px 4px 4px 4px;height:30px;">
+			<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.bestcrossbowsource.com%2Fcrossbow-arrow-ballistics-calculator&amp;layout=button_count&amp;show_faces=false&amp;width=99&amp;action=like&amp;font=verdana&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" allowTransparency="true" style="border:none; overflow:hidden; width:99px; height:21px;"></iframe></div><div style="float:left;padding-right:10px; margin:4px 4px 4px 4px;height:30px;"><a id="how-test" style="font-size:12px;" href="http://www.bestcrossbowsource.com/how-we-test/">How We Test</a> - <a style="font-size:12px;" href="http://www.bestcrossbowsource.com/authors/">The Authors</a></div>			
+			</div><div style="clear:both"></div><div style="padding-bottom:4px;"></div><p>We strongly recommend reading our detailed <a href="http://www.bestcrossbowsource.com/crossbow-kinetic-energy-chart-calculations-hunting-requirements/">kinetic energy tests and guide</a> for more information. Also, make sure to check out our <a href="http://www.bestcrossbowsource.com">best crossbow rankings</a> for a scoop on the top equipment on the market. </p>
+<p>The arrow ballistics calculator below will help you determine your arrow&#8217;s vertical drop, speed, kinetic energy and momentum, for up to 70 yards out in 10 yard increments. You will need to provide total arrow weight and initial speed for the calculation to be effective, as well as some other optional info (see below). The calculator assumes average air density and air viscosity. Actual ballistics data will vary slightly based on weather conditions and how high above sea level you are. These will result in relatively small variations that you should not worry much about. <strong>Values below should be considered very close estimates of what you will experience in the field</strong> (a 2% margin of error should be assumed). <center></p>
+<form NAME="calculator" align="left">
+<div align="center"><center></p>
+<table CELLPADDING="0" CELLSPACING="0" BORDER="1" width="90%" BGCOLOR="#c8c0a8">
+<tr align="center">
+<td width="100%" align="center" colspan="4"><font><big><strong>Basic Settings:</strong></big></font></td>
+</tr>
+<tr align="center">
+<td align="center" width="50%" align="left">Arrow Speed (FPS): <br /><input TYPE="text" NAME="Arrow_Speed2" size="5"></td>
+<td align="center" width="50%" align="left" colspan="3">Total Arrow Weight (grains): <br /><input TYPE="text" NAME="Arrow_Weight2" size="5"></td>
+</tr>
+<tr align="center">
+<td width="100%" align="center" colspan="4"><font><big><strong>Additional Arrow Settings (Optional):</strong></big><br /><font color="red">Important Note:</font> You can provide additional fletching settings and shaft length below to obtain even more accurate calculations, as they have a certain impact on arrow drag and stability. If you don&#8217;t know this information, don&#8217;t worry: the difference it makes for the calculations is relatively small. Additionally, we have populated these three fields with values that we feel are good averages of the fletching/shaft sizes for the vast majority of crossbow arrows on the market today.   </font></td>
+</tr>
+<tr align="center">
+<td align="center" width="33%" align="left">Fletching Length (inches): <br /><input TYPE="text" NAME="F_Lgth" size="5" value="3"></td>
+<td align="center" width="33%" align="left">Fletching Height (inches): <br /><input TYPE="text" NAME="F_Hgt" size="5" value="0.45"></td>
+<td align="center" width="33%" align="left">Shaft Length (inches): <br /><input TYPE="text" NAME="A_Lgth" size="5" value="20"></td>
+</tr>
+<tr align="center">
+<td width="50%" align="center" colspan="3">
+      <input class="styled-button-1" TYPE="button" VALUE="CALCULATE BALLISTICS" onClick="tablegen(this.form)" > <input class="styled-button-1"  type="reset" value="Reset Values"></p>
+</td>
+</tr>
+</table>
+<p>  </center></div>
+<div align="center">
+  <center></p>
+<table id="trajectory-table" CELLPADDING="0" CELLSPACING="0"
+  BORDER="1" width="90%" BGCOLOR="#c8c0a8"></p>
+<tr align="center">
+<td width="20%" align="center">Distance<br />
+      (yards)</td>
+<td width="20%" align="center">Vertical Drop<br />
+      (inches)</td>
+<td width="20%" align="center">Arrow Speed<br />
+      (FPS)</td>
+<td width="20%" align="center">Kinetic Energy<br />
+      (ft-lbs)</td>
+<td width="20%" align="center">Momentum<br />
+      (lb-sec)</td>
+</tr>
+</table>
+<p>  </center></div>
+<p></center><br />
+</form>
+<p>Calculations are largely based on the <a href="http://www.arcoefreccia.it/public/Forum/Data/brzvtr/2012618151810_CX.pdf" target="_blank">Exterior Ballistics of Bows and Arrows</a> paper.</p>
+<div class='yarpp yarpp-related yarpp-related-website yarpp-template-list'>
+<!-- YARPP List -->
+<h3>Related posts:</h3><ol>
+<li><a href="http://www.bestcrossbowsource.com/arrow-speed-drop-crossbow-test-results/" rel="bookmark" title="Arrow Speed Drop &#8211; Crossbow Test Results">Arrow Speed Drop &#8211; Crossbow Test Results </a></li>
+<li><a href="http://www.bestcrossbowsource.com/crossbow-kinetic-energy-chart-calculations-hunting-requirements/" rel="bookmark" title="Crossbow Kinetic Energy &#8211; Chart, Calculations, Hunting Requirements">Crossbow Kinetic Energy &#8211; Chart, Calculations, Hunting Requirements </a></li>
+<li><a href="http://www.bestcrossbowsource.com/crossbow-arrow-drop-charted-test-results/" rel="bookmark" title="Crossbow Arrow Drop &#8211; Charted Test Results">Crossbow Arrow Drop &#8211; Charted Test Results </a></li>
+<li><a href="http://www.bestcrossbowsource.com/dead-wind-speed-stick-review/" rel="bookmark" title="Dead Down Wind Speed Stick Review">Dead Down Wind Speed Stick Review </a></li>
+</ol>
+</div>
+
+	
+	
+	
+	</div>
+
+<footer class="entry-footer cf">
+	
+	
+	
+	</footer>
+
+
+</article>
+
+
+	<div class="post-nav cf">
+		<div class="link-prev"><a href="http://www.bestcrossbowsource.com/barnett-wildcat-c6-review-in-field-compound-crossbow/" title="Barnett Wildcat C6 Review (In-Field) - Compound Crossbow">&#8592; Previous Post</a></div><div class="link-next"><a href="http://www.bestcrossbowsource.com/crossbow-kinetic-energy-chart-calculations-hunting-requirements/" title="Crossbow Kinetic Energy - Chart, Calculations, Hunting Requirements">Next Post &#8594;</a></div>	</div>
+
+			<div id="comment-area">
+<div id="comments">
+	
+	</div></div>
+			
+		<!-- End Loop -->
+
+	
+	
+	
+	</div>
+
+<div id="sidebar-right" class="sidebar cf">
+		<div id="widgets-wrap-sidebar-right">
+
+					<div id="search-2" class="widget-sidebar frontier-widget widget_search"><h4 class="widget-title">Find Crossbow Review:</h4><form method="get" id="searchform" action="http://www.bestcrossbowsource.com">
+<div>
+<label for="s"></label> <input class="text" type="text" value=" " name="s" id="s" />
+<input type="submit" class="submit" name="Submit" value="Search" style="background-color:#DDA54F;"/>
+</div>
+</form></div><div id="taxonomy-drill-down-2" class="widget-sidebar frontier-widget widget_taxonomy-drill-down"><h4 class="widget-title">Crossbow Finder</h4><form method="get" action="http://www.bestcrossbowsource.com/" class="taxonomy-drilldown-dropdowns">
+	<ul>
+		<li>
+			<label for="qmt-drawweight">Draw Weight</label>
+			<select id="qmt-drawweight" name="drawweight">
+				<option value=''>&mdash; any &mdash;</option>
+				<option class="level-0" value="100" >
+	100
+</option>
+<option class="level-0" value="125-lbs" >
+	125 lbs.
+</option>
+<option class="level-0" value="130-lbs" >
+	130 lbs.
+</option>
+<option class="level-0" value="135-lbs" >
+	135 lbs.
+</option>
+<option class="level-0" value="140-lbs" >
+	140 lbs.
+</option>
+<option class="level-0" value="150-lbs" >
+	150 lbs.
+</option>
+<option class="level-0" value="155-lbs" >
+	155 lbs.
+</option>
+<option class="level-0" value="160-lbs" >
+	160 lbs.
+</option>
+<option class="level-0" value="165-lbs" >
+	165 lbs.
+</option>
+<option class="level-0" value="170" >
+	170
+</option>
+<option class="level-0" value="175-lbs" >
+	175 lbs.
+</option>
+<option class="level-0" value="180-lbs" >
+	180 lbs.
+</option>
+<option class="level-0" value="185-lbs" >
+	185 lbs.
+</option>
+<option class="level-0" value="195-lbs" >
+	195 lbs.
+</option>
+<option class="level-0" value="200" >
+	200+
+</option>
+
+			</select>
+		</li>
+		<li>
+			<label for="qmt-weight">Weight</label>
+			<select id="qmt-weight" name="weight">
+				<option value=''>&mdash; any &mdash;</option>
+				<option class="level-0" value="5-6-lbs" >
+	5 - 6 lbs.
+</option>
+<option class="level-0" value="6-7-lbs" >
+	6 - 7 lbs.
+</option>
+<option class="level-0" value="7-8-lbs" >
+	7 - 8 lbs.
+</option>
+<option class="level-0" value="8-9-lbs" >
+	8 - 9 lbs.
+</option>
+<option class="level-0" value="9-10-lbs" >
+	9 - 10 lbs.
+</option>
+<option class="level-0" value="above-10-lbs" >
+	Above 10 lbs.
+</option>
+<option class="level-0" value="below-5-lbs" >
+	Below 5 lbs.
+</option>
+
+			</select>
+		</li>
+		<li>
+			<label for="qmt-fps">FPS</label>
+			<select id="qmt-fps" name="fps">
+				<option value=''>&mdash; any &mdash;</option>
+				<option class="level-0" value="260-279" >
+	260 - 279
+</option>
+<option class="level-0" value="280-299" >
+	280 - 299
+</option>
+<option class="level-0" value="300-319" >
+	300 - 319
+</option>
+<option class="level-0" value="320-339" >
+	320 - 339
+</option>
+<option class="level-0" value="340-359" >
+	340 - 359
+</option>
+<option class="level-0" value="360-379" >
+	360 - 379
+</option>
+<option class="level-0" value="380-399" >
+	380 - 399
+</option>
+<option class="level-0" value="400" >
+	400+
+</option>
+<option class="level-0" value="below-250" >
+	Below 250
+</option>
+
+			</select>
+		</li>
+		<li>
+			<label for="qmt-brand">Brand</label>
+			<select id="qmt-brand" name="brand">
+				<option value=''>&mdash; any &mdash;</option>
+				<option class="level-0" value="arrow-precision" >
+	Arrow Precision
+</option>
+<option class="level-0" value="barnett" >
+	Barnett
+</option>
+<option class="level-0" value="browning" >
+	Browning
+</option>
+<option class="level-0" value="cabelas" >
+	Cabelas
+</option>
+<option class="level-0" value="camx" >
+	CAMX
+</option>
+<option class="level-0" value="carbon-express" >
+	Carbon Express
+</option>
+<option class="level-0" value="center-point" >
+	Center Point
+</option>
+<option class="level-0" value="darton" >
+	Darton
+</option>
+<option class="level-0" value="diamond-archery" >
+	Diamond Archery
+</option>
+<option class="level-0" value="excalibur" >
+	Excalibur
+</option>
+<option class="level-0" value="horton" >
+	Horton
+</option>
+<option class="level-0" value="killer-instinct" >
+	Killer Instinct
+</option>
+<option class="level-0" value="kodabow" >
+	Kodabow
+</option>
+<option class="level-0" value="lastpunch" >
+	LastPunch
+</option>
+<option class="level-0" value="man-kung" >
+	Man Kung
+</option>
+<option class="level-0" value="mission-by-mathews" >
+	Mission (by Mathews)
+</option>
+<option class="level-0" value="native-crossbows" >
+	Native Crossbows
+</option>
+<option class="level-0" value="parker" >
+	Parker
+</option>
+<option class="level-0" value="pse" >
+	PSE
+</option>
+<option class="level-0" value="sa-sports" >
+	SA Sports
+</option>
+<option class="level-0" value="scorpyd" >
+	Scorpyd
+</option>
+<option class="level-0" value="southern-crossbow" >
+	Southern Crossbow
+</option>
+<option class="level-0" value="tenpoint" >
+	TenPoint
+</option>
+<option class="level-0" value="velocity" >
+	Velocity
+</option>
+<option class="level-0" value="wicked-ridge" >
+	WIcked Ridge
+</option>
+
+			</select>
+		</li>
+		<li>
+			<label for="qmt-length">Length</label>
+			<select id="qmt-length" name="length">
+				<option value=''>&mdash; any &mdash;</option>
+				<option class="level-0" value="32-33" >
+	32&quot; - 33&quot;
+</option>
+<option class="level-0" value="33-34" >
+	33&quot; - 34&quot;
+</option>
+<option class="level-0" value="34-35" >
+	34&quot; - 35&quot;
+</option>
+<option class="level-0" value="35-36" >
+	35&quot; - 36&quot;
+</option>
+<option class="level-0" value="36-37" >
+	36&quot; - 37&quot;
+</option>
+<option class="level-0" value="37-38" >
+	37 - 38&quot;
+</option>
+<option class="level-0" value="38-39" >
+	38&quot; - 39&quot;
+</option>
+<option class="level-0" value="39-40" >
+	39&quot; - 40&quot;
+</option>
+<option class="level-0" value="40" >
+	40&quot; +
+</option>
+<option class="level-0" value="below-32" >
+	Below 32&quot;
+</option>
+
+			</select>
+		</li>
+		<li>
+			<label for="qmt-type">Type</label>
+			<select id="qmt-type" name="type">
+				<option value=''>&mdash; any &mdash;</option>
+				<option class="level-0" value="compound" >
+	Compound
+</option>
+<option class="level-0" value="recurve" >
+	Recurve
+</option>
+<option class="level-0" value="reverse" >
+	Reverse
+</option>
+
+			</select>
+		</li>
+	</ul>
+
+	<p>
+		<input type="submit" value="Submit" />
+		<a class="taxonomy-drilldown-reset" href="http://www.bestcrossbowsource.com/">Reset</a>
+	</p>
+</form>
+</div>		
+	</div>
+	</div></div>
+
+
+<div id="bottom-bar" class="cf">
+	
+			<span id="bottom-bar-text"><a href="http://www.bestcrossbowsource.com/sitemap.xml.gz">XML Sitemap</a></span>
+	
+	
+	</div>
+
+</div>
+
+
+			<button type="button"  aria-controls="rmp-container-11037" aria-label="Menu Trigger" id="rmp_menu_trigger-11037"  class="rmp_menu_trigger rmp-menu-trigger-boring">
+								<span class="rmp-trigger-box">
+									<span class="responsive-menu-pro-inner"></span>
+								</span>
+					</button>
+						<div id="rmp-container-11037" class="rmp-container rmp-container rmp-slide-left">
+							<div id="rmp-menu-title-11037" class="rmp-menu-title">
+				<a href="" target="_self" id="rmp-menu-title-link">
+								<span></span>
+				</a>
+			</div>
+			<div id="rmp-menu-wrap-11037" class="rmp-menu-wrap"><ul id="rmp-menu-11037" class="rmp-menu" role="menubar" aria-label="Default Menu"><li id="rmp-menu-item-1595" class=" menu-item menu-item-type-custom menu-item-object-custom menu-item-home rmp-menu-item rmp-menu-top-level-item" role="none"><a  href = "http://www.bestcrossbowsource.com"  class = "rmp-menu-item-link"  role = "menuitem"  >Best Crossbow</a></li><li id="rmp-menu-item-1581" class=" menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children rmp-menu-item rmp-menu-item-has-children rmp-menu-top-level-item" role="none"><a  href = "#"  class = "rmp-menu-item-link"  role = "menuitem"  >Rankings<div class="rmp-menu-subarrow">▼</div></a><ul aria-label="Rankings"
+            role="menu" data-depth="2"
+            class="rmp-submenu rmp-submenu-depth-1"><li id="rmp-menu-item-1583" class=" menu-item menu-item-type-custom menu-item-object-custom rmp-menu-item rmp-menu-sub-level-item" role="none"><a  href = "http://www.bestcrossbowsource.com/by-manufacturer/"  class = "rmp-menu-item-link"  role = "menuitem"  >Best by brand</a></li><li id="rmp-menu-item-6545" class=" menu-item menu-item-type-custom menu-item-object-custom rmp-menu-item rmp-menu-sub-level-item" role="none"><a  href = "http://www.bestcrossbowsource.com/best-cheapinexpensive-crossbows-in-2015/"  class = "rmp-menu-item-link"  role = "menuitem"  >Best Budget Crossbows</a></li><li id="rmp-menu-item-7091" class=" menu-item menu-item-type-custom menu-item-object-custom rmp-menu-item rmp-menu-sub-level-item" role="none"><a  href = "http://www.bestcrossbowsource.com/best-compound-crossbows-for-the-money-in-2016/"  class = "rmp-menu-item-link"  role = "menuitem"  >Best Compounds</a></li><li id="rmp-menu-item-6317" class=" menu-item menu-item-type-custom menu-item-object-custom rmp-menu-item rmp-menu-sub-level-item" role="none"><a  href = "http://www.bestcrossbowsource.com/best-reverse-crossbows-rankings-reviews-in-2015/"  class = "rmp-menu-item-link"  role = "menuitem"  >Best Reverse Crossbows</a></li><li id="rmp-menu-item-6565" class=" menu-item menu-item-type-custom menu-item-object-custom rmp-menu-item rmp-menu-sub-level-item" role="none"><a  href = "http://www.bestcrossbowsource.com/best-recurve-crossbows-for-the-money-in-2019/"  class = "rmp-menu-item-link"  role = "menuitem"  >Best Recurve Crossbows</a></li><li id="rmp-menu-item-6196" class=" menu-item menu-item-type-custom menu-item-object-custom rmp-menu-item rmp-menu-sub-level-item" role="none"><a  href = "http://www.bestcrossbowsource.com/the-fastest-crossbows-of-2015-rankings-recommendations/"  class = "rmp-menu-item-link"  role = "menuitem"  >Fastest Crossbows</a></li><li id="rmp-menu-item-2934" class=" menu-item menu-item-type-custom menu-item-object-custom rmp-menu-item rmp-menu-sub-level-item" role="none"><a  href = "http://www.bestcrossbowsource.com/best-mini-crossbows-top-picks-buying-guide/"  class = "rmp-menu-item-link"  role = "menuitem"  >Best Mini Crossbows</a></li></ul></li><li id="rmp-menu-item-8034" class=" menu-item menu-item-type-custom menu-item-object-custom rmp-menu-item rmp-menu-top-level-item" role="none"><a  href = "http://www.bestcrossbowsource.com/category/crossbow-blog/"  class = "rmp-menu-item-link"  role = "menuitem"  >Blog</a></li><li id="rmp-menu-item-1587" class=" menu-item menu-item-type-custom menu-item-object-custom rmp-menu-item rmp-menu-top-level-item" role="none"><a  href = "http://www.bestcrossbowsource.com/reviews-by-brand/"  class = "rmp-menu-item-link"  role = "menuitem"  >Reviews</a></li><li id="rmp-menu-item-6255" class=" menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children rmp-menu-item rmp-menu-item-has-children rmp-menu-top-level-item" role="none"><a  href = "#"  class = "rmp-menu-item-link"  role = "menuitem"  >Accessories<div class="rmp-menu-subarrow">▼</div></a><ul aria-label="Accessories"
+            role="menu" data-depth="2"
+            class="rmp-submenu rmp-submenu-depth-1"><li id="rmp-menu-item-6256" class=" menu-item menu-item-type-custom menu-item-object-custom rmp-menu-item rmp-menu-sub-level-item" role="none"><a  href = "http://www.bestcrossbowsource.com/best-crossbow-scopes-reviews-ratings-2015/"  class = "rmp-menu-item-link"  role = "menuitem"  >Best Scopes</a></li><li id="rmp-menu-item-6261" class=" menu-item menu-item-type-custom menu-item-object-custom rmp-menu-item rmp-menu-sub-level-item" role="none"><a  href = "http://www.bestcrossbowsource.com/best-crossbow-cases-reviews-ratings/"  class = "rmp-menu-item-link"  role = "menuitem"  >Best Carry Case</a></li><li id="rmp-menu-item-6278" class=" menu-item menu-item-type-custom menu-item-object-custom rmp-menu-item rmp-menu-sub-level-item" role="none"><a  href = "http://www.bestcrossbowsource.com/best-crossbow-slings-selection-guide-recommendations/"  class = "rmp-menu-item-link"  role = "menuitem"  >Best Slings</a></li><li id="rmp-menu-item-6257" class=" menu-item menu-item-type-custom menu-item-object-custom rmp-menu-item rmp-menu-sub-level-item" role="none"><a  href = "http://www.bestcrossbowsource.com/best-crossbow-broadheads/"  class = "rmp-menu-item-link"  role = "menuitem"  >Best Broadheads</a></li><li id="rmp-menu-item-6301" class=" menu-item menu-item-type-custom menu-item-object-custom rmp-menu-item rmp-menu-sub-level-item" role="none"><a  href = "http://www.bestcrossbowsource.com/best-deer-attractants-scents-calls-decoys-guide/"  class = "rmp-menu-item-link"  role = "menuitem"  >Best Deer Attractants</a></li></ul></li><li id="rmp-menu-item-1596" class=" menu-item menu-item-type-custom menu-item-object-custom rmp-menu-item rmp-menu-top-level-item" role="none"><a  href = "http://www.bestcrossbowsource.com/guides-articles/"  class = "rmp-menu-item-link"  role = "menuitem"  >Crossbow Academy</a></li><li id="rmp-menu-item-1594" class=" menu-item menu-item-type-custom menu-item-object-custom rmp-menu-item rmp-menu-top-level-item" role="none"><a  href = "http://www.bestcrossbowsource.com/crossbow-hunting-regulations-by-state/"  class = "rmp-menu-item-link"  role = "menuitem"  >Regulations</a></li><li id="rmp-menu-item-1597" class=" menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children rmp-menu-item rmp-menu-item-has-children rmp-menu-top-level-item" role="none"><a  href = "#"  class = "rmp-menu-item-link"  role = "menuitem"  >About<div class="rmp-menu-subarrow">▼</div></a><ul aria-label="About"
+            role="menu" data-depth="2"
+            class="rmp-submenu rmp-submenu-depth-1"><li id="rmp-menu-item-4858" class=" menu-item menu-item-type-custom menu-item-object-custom rmp-menu-item rmp-menu-sub-level-item" role="none"><a  href = "http://www.bestcrossbowsource.com/how-we-test/"  class = "rmp-menu-item-link"  role = "menuitem"  >How We Test</a></li><li id="rmp-menu-item-5357" class=" menu-item menu-item-type-custom menu-item-object-custom rmp-menu-item rmp-menu-sub-level-item" role="none"><a  href = "http://www.bestcrossbowsource.com/authors/"  class = "rmp-menu-item-link"  role = "menuitem"  >The Authors</a></li><li id="rmp-menu-item-1598" class=" menu-item menu-item-type-custom menu-item-object-custom rmp-menu-item rmp-menu-sub-level-item" role="none"><a  href = "http://www.bestcrossbowsource.com/about-us/"  class = "rmp-menu-item-link"  role = "menuitem"  >About This Site</a></li><li id="rmp-menu-item-1599" class=" menu-item menu-item-type-custom menu-item-object-custom rmp-menu-item rmp-menu-sub-level-item" role="none"><a  href = "http://www.bestcrossbowsource.com/contact/"  class = "rmp-menu-item-link"  role = "menuitem"  >Contact</a></li><li id="rmp-menu-item-1600" class=" menu-item menu-item-type-custom menu-item-object-custom rmp-menu-item rmp-menu-sub-level-item" role="none"><a  href = "http://www.bestcrossbowsource.com/privacy"  class = "rmp-menu-item-link"  role = "menuitem"  >Privacy Policy</a></li></ul></li></ul></div>			<div id="rmp-search-box-11037" class="rmp-search-box">
+					<form action="http://www.bestcrossbowsource.com/" class="rmp-search-form" role="search">
+						<input type="search" name="s" title="Search" placeholder="Search" class="rmp-search-box">
+					</form>
+				</div>
+						<div id="rmp-menu-additional-content-11037" class="rmp-menu-additional-content">
+									</div>
+						</div>
+			        <div id="wpfront-scroll-top-container">
+            <img src="http://www.bestcrossbowsource.com/wp-content/plugins/wpfront-scroll-top/images/icons/1.png" alt="" />        </div>
+                <script type="text/javascript">
+            function wpfront_scroll_top_init() {
+                if (typeof wpfront_scroll_top === "function" && typeof jQuery !== "undefined") {
+                    wpfront_scroll_top({"scroll_offset":100,"button_width":0,"button_height":0,"button_opacity":0.8000000000000000444089209850062616169452667236328125,"button_fade_duration":200,"scroll_duration":400,"location":1,"marginX":10,"marginY":0,"hide_iframe":false,"auto_hide":false,"auto_hide_after":2,"button_action":"top","button_action_element_selector":"","button_action_container_selector":"html, body","button_action_element_offset":0});
+                } else {
+                    setTimeout(wpfront_scroll_top_init, 100);
+                }
+            }
+            wpfront_scroll_top_init();
+        </script>
+        <link rel='stylesheet' id='css-4-css'  href='http://www.bestcrossbowsource.com/wp-content/mmr/cea71320-1644561308.min.css' type='text/css' media='all' />
+<script type='text/javascript' id='js-3-js-extra'>
+/* <![CDATA[ */
+var thirsty_global_vars = {"home_url":"\/\/www.bestcrossbowsource.com","ajax_url":"http:\/\/www.bestcrossbowsource.com\/wp-admin\/admin-ajax.php","link_fixer_enabled":"yes","link_prefix":"recommends","link_prefixes":{"1":"recommends"},"post_id":"4741","enable_record_stats":"yes","enable_js_redirect":"yes","disable_thirstylink_class":""};var JQLBSettings = {"showTitle":"1","showCaption":"1","showNumbers":"1","fitToScreen":"1","resizeSpeed":"400","showDownload":"0","navbarOnTop":"0","marginSize":"0","slideshowSpeed":"0","prevLinkTitle":"previous image","nextLinkTitle":"next image","closeTitle":"close image gallery","image":"Image ","of":" of ","download":"Download","pause":"(pause slideshow)","play":"(play slideshow)"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://www.bestcrossbowsource.com/wp-content/mmr/e6ac3130-1637826885.min.js' id='js-3-js'></script>
+
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.bestcrossbowsource.com/wp-content/piwik/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', 1]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
+    g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="http://www.bestcrossbowsource.com/wp-content/piwik/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+<!-- End Piwik Code -->
+
+</body>
+</html>

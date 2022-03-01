@@ -1,0 +1,137 @@
+<html>
+    <head>
+        <!-- Load plotly.js into the DOM -->
+        <script src='https://cdn.plot.ly/plotly-2.9.0.min.js'></script>
+        <style>
+            body {
+                margin: 40px;
+            }
+            form {
+                font-family: sans-serif;
+            }
+            label {
+                width: 150px;
+                display: inline-block;
+            }
+            input {
+                text-align: right;
+            }
+            h3 {
+                font-family: sans-serif;
+            }
+            .wrapper {
+                display: grid;
+                grid-template-columns: 400px 400px;
+            }
+            table {
+                font-family: sans-serif;
+                border-collapse: collapse;
+                border: 2px solid;
+            }
+            th {
+                border-style: solid;
+                border-color: black;
+                border-top-width: 2px;
+                border-bottom-width: 2px;
+                border-left-width: 1px;
+                border-right-width: 1px;
+
+                font-weight: normal;
+                padding: 8px 10px;
+            }
+            td {
+                text-align: right;
+                border: 1px solid black;
+                padding: 5px 5px;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div class="wrapper">
+            <div id="col1">
+                <h3>Arrow Trajectory Calculator</h2>
+                <form id="trajectory-form" autocomplete="off">
+
+                    <label for="Drag Coeff. K">Drag Coeff:</label>
+                    <input id="drag" size="10" required pattern="\d*[.]?\d*(e-?\d+)?"> lb/ft<br>
+
+                    <label for="weight">Arrow Weight</label>
+                    <input id="weight" size="10" required pattern="\d*[.]?\d*"> grain<br>
+
+                    <label for="speed">Initial Speed</label>
+                    <input id="speed" size="10" required pattern="\d*[.]?\d*"> ft/s<br>
+
+                    <label for="height">Initial Height</label>
+                    <input id="height" size="10" required pattern="\d*[.]?\d*"> ft<br>
+
+                    <label for="angle">Initial Angle</label>
+                    <input id="angle" size="10" required pattern="-?\d*[.]?\d*"> deg<br>
+
+                    <label for="dt">Time Step</label>
+                    <input id="dt" size="10" required pattern="-?\d*[.]?\d*"> s<br>
+
+                    <label for="endtime">End Time</label>
+                    <input id="endtime" size="10" required pattern="-?\d*[.]?\d*"> s<br>
+
+                    <br><br>
+                    <input id="compute-trajectory-btn" type="submit" value="Compute Trajectory">
+                </form>
+            </div>
+            <div id="col2">
+                <h3>Drag Coeff. Calculator</h2>
+                <form id="drag-form"> 
+                    <label for="B">Head-on Coeff. (B)</label>
+                    <select id="B">
+                        <option value="1">Bullet - 1.0</option>
+                        <option value="2.3">Parallel Pile - 2.3</option>
+                        <option value="7.0">Blunt - 7.0</option>
+                    </select>
+(dimensionless)<br>
+                    
+                    <label for="D">Shaft Diameter (D)</label>
+                    <input id="D" size="10" required pattern="\d*[.]?\d*"> in<br>
+                    
+                    <label for="L">Shaft Length (L)</label>
+                    <input id="L" size="10" required pattern="\d*[.]?\d*"> in<br>
+                    
+                    <label for="F">Feather Area (F)</label>
+                    <input id="F" size="10" required pattern="\d*[.]?\d*"> in<sup>2</sup><br>
+
+                    <label for="K1">K<sub>1</sub></label>
+                    <input id="K1" size="10" required pattern="\d*[.]?\d*"> lb/ft/in<sup>2</sup><br>
+                    
+                    <label for="K2">K<sub>2</sub></label>
+                    <input id="K2" size="10" required pattern="\d*[.]?\d*(e-?\d+)?"> lb/ft/in<sup>2</sup><br>
+                    
+                    <label for="K3">K<sub>3</sub></label>
+                    <input id="K3" size="10" required pattern="\d*[.]?\d*(e-?\d+)?"> lb/ft/in<sup>2</sup><br>
+                    <br><br>
+                    K = K<sub>1</sub>⨯B⨯D<sup>2</sup> + K<sub>2</sub>⨯L⨯D + K<sub>3</sub>⨯F<br>
+                    F = K⨯V<sup>2</sup><br><br>
+                    <label for="K1BD2">K<sub>1</sub>⨯B⨯D<sup>2</sup></label>
+                    <input id="K1BD2" size="10" readonly> lb/ft<br>
+
+                    <label for="K2LD">K<sub>2</sub>⨯L⨯D<sup>2</sup></label>
+                    <input id="K2LD" size="10" readonly> lb/ft<br>
+
+                    <label for="K3F">K<sub>3</sub>⨯F</label>
+                    <input id="K3F" size="10" readonly> lb/ft<br>
+
+                    <label for="K">K</label>
+                    <input id="K" size="10" readonly> lb/ft<br>
+                    <label for=""Rf">F at 200 FPS</label>
+                    <input id="Rf" size="10" readonly> lb ft/s<sup>2</sup>
+                    <br><br>
+                    <input id="compute-K-btn" type="submit" value="Compute K">
+                </form>
+            </div>
+        </div>
+        <div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+        <button id="copy-btn" type=button disabled style="display:none" onclick="copy_table">Copy to Clipboard</button>
+        <br><br>
+        <div id="myTable"></div>
+
+        <script src="arrow1.js"></script>
+    </body>
+</html>
